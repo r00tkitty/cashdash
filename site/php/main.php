@@ -69,7 +69,6 @@
     .sidebar a {font-size: 18px;}
   }
   </style>
-      <link rel="preload" href="js/main.js" as="script">
     </head>
     <body>
     <div id="mySidebar" class="sidebar">
@@ -79,13 +78,23 @@
   <a href="#">Spend/Get</a>
   </div>
 
-<div id="main">
-  <button class="openbtn" onclick="openNav()">&#9776; Open Sidebar</button>
-  <h2>Collapsed Sidebar</h2>
-  <p>Content...</p>
+  <div id="main">
+  <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
 </div>
+  <script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
        <?php
-      $total;
+      $total = 90;
+      echo "<p><center>I have $total</center></p>"
        ?>
     </body>
 </html>
