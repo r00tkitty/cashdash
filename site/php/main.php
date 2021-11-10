@@ -2,6 +2,9 @@
     <head>
         <meta charset="utf-8">
         <title>CashDash</title>
+        <link rel="icon" href="favicon.png">
+	  	<link rel="stylesheet" href="css/main.css">
+      <link rel="preload" href="js/main.js" as="script">
     </head>
     <body>
     <div id="mySidebar" class="sidebar">
