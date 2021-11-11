@@ -60,7 +60,7 @@
   /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
   #main {
     transition: margin-left .5s; /* If you want a transition effect */
-    padding: 20px;
+    padding: 20x;
   }
   
   /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
@@ -68,14 +68,18 @@
     .sidebar {padding-top: 15px;}
     .sidebar a {font-size: 18px;}
   }
+  /*this is the text i'm gonna use*/
+    .deftext {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
   </style>
     </head>
     <body>
     <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">Graph</a>
-  <a href="#">Main</a>
-  <a href="#">Spend/Get</a>
+  <a href="stats.php">Graph</a>
+  <a href="main.php">Main</a>
+  <a href="spendings.php">Spend/Get</a>
   </div>
 
   <div id="main">
