@@ -77,6 +77,7 @@
     .thebigfuckingvalueinthemiddle {
      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
      font-size: large;
+     text-align: center;
     }
   </style>
     </head>
@@ -86,6 +87,7 @@
   <a href="stats.php">Graph</a>
   <a href="main.php">Main</a>
   <a href="spendings.php">Spend/Get</a>
+  <a href="Login.php">Profile</a>
   </div>
 
   <div id="main">
@@ -104,8 +106,8 @@ function closeNav() {
 </script>
        <?php
       $total = 90;
-      echo "<p ><center>I have $total</center></p>";
-      echo "<p ><center>I have $total</center></p>"
+      echo "<p >I have $total</p>";
+      echo "<p >I have $total</p>"
        ?>
     </body>
 </html>
