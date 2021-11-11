@@ -104,7 +104,7 @@ function closeNav() {
 </script>
        <?php
       $total = 90;
-      echo "<p><center>I have $total</center></p>"
+      echo "<p ><center>I have $total</center></p>"
        ?>
     </body>
 </html>
