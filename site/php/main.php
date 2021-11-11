@@ -71,6 +71,12 @@
   /*this is the text i'm gonna use*/
     .deftext {
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: medium;
+      
+    }
+    .thebigfuckingvalueinthemiddle {
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+     font-size: large;
     }
   </style>
     </head>
