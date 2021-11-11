@@ -1,2 +1,3 @@
 # cashdash
-cashdash app
+Sangros® CashDash™
+Where money flows the way you want it to.
