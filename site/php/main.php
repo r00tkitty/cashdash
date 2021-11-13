@@ -107,7 +107,7 @@ function closeNav() {
        <?php
       $total = 90;
       echo <<<EOD
-      <p >I have $total</
+      <p >I have $total</p>
       EOD;
       echo "<p >I have $total</p>"
        ?>
