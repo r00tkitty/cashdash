@@ -17,6 +17,8 @@
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+    background: rgb(26,0,89);
+    background: linear-gradient(135deg, rgba(26,0,89,1) 0%, rgba(128,0,35,1) 70%);
   }
   
   /* The sidebar links */
@@ -31,7 +33,9 @@
   
   /* When you mouse over the navigation links, change their color */
   .sidebar a:hover {
-    color: #f1f1f1;
+    color: #4A00FF;
+    transition: 0.4s;
+
   }
   
   /* Position and style the close button (top right corner) */
@@ -47,10 +51,11 @@
   .openbtn {
     font-size: 20px;
     cursor: pointer;
-    background-color: #111;
+    background-color: rgba(128,0,35,0);
     color: white;
-    padding: 10px 15px;
+    padding: 0px 0px;
     border: none;
+    border-radius: 10px;
   }
   
   .openbtn:hover {
@@ -91,7 +96,7 @@
   </div>
 
   <div id="main">
-  <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
+  <button class="openbtn" onclick="openNav()"><img src="favicon.png" style="height: 40px;"></button>
 </div>
   <script>
 function openNav() {
