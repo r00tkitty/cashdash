@@ -16,7 +16,7 @@
     background-color: #111; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+    transition: 0.3s; /* 0.5 second transition effect to slide in the sidebar */
     background: rgb(26,0,89);
     background: linear-gradient(135deg, rgba(26,0,89,1) 0%, rgba(128,0,35,1) 70%);
   }
@@ -77,12 +77,21 @@
     .deftext {
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
       font-size: medium;
+      color: black;
+      text-align: center;
+      font-size: 80px;
       
     }
-    .thebigfuckingvalueinthemiddle {
+    .fuckoffphp {
      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
      font-size: large;
      text-align: center;
+     font-size: 150px;
+     color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
+    }
+    body {
+      background: rgb(245,0,219);
+      background: linear-gradient(0deg, rgba(245,0,219,1) 0%, rgba(74,0,201,1) 100%);
     }
   </style>
     </head>
@@ -108,13 +117,26 @@ function closeNav() {
   document.getElementById("mySidebar").style.width = "0";
   document.getElementById("main").style.marginLeft= "0";
 }
+
 </script>
        <?php
+      $username = "DuneDude";
       $total = 90;
+      $away = "10";
+      $goal1 = "Saving goal 1";
       echo <<<EOD
-      <p >I have $total</p>
+      <p class="deftext">Hello, $username<br>You currently have</p>
       EOD;
-      echo "<p >I have $total</p>"
+       ?>
+      <?php
+      echo <<<EOD
+      <p class="fuckoffphp">€$total</p>
+      EOD;
+       ?>
+       <?php
+      echo <<<EOD
+      <p class="deftext">You are $away from reaching<br>$goal1</p>
+      EOD;
        ?>
     </body>
 </html>
