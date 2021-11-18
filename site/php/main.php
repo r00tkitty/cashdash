@@ -1,3 +1,13 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -119,14 +129,12 @@ function closeNav() {
 }
 
 </script>
+<p class="deftext">Hello, <?php echo htmlspecialchars($_SESSION["username"]); ?><br>You currently have</p>
        <?php
       $username = "DuneDude";
       $total = 90;
       $away = "10";
       $goal1 = "Saving goal 1";
-      echo <<<EOD
-      <p class="deftext">Hello, $username<br>You currently have</p>
-      EOD;
        ?>
       <?php
       echo <<<EOD
