@@ -102,7 +102,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body{ font: 14px sans-serif; }
+    html {
+         height: 100%;
+        }
+        body{ 
+            font: 14px sans-serif;
+            background: linear-gradient(157deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
+            height: 100%;
+            margin: 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            }
         .wrapper{ width: 360px; padding: 20px; }
     </style>
 </head>
