@@ -67,12 +67,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             header("location: you.php");
                         } else{
                             // Password is not valid, display a generic error message
-                            $login_err = "Invalid username or password.";
+                            $login_err = "Invalid Sangros ID or password.";
                         }
                     }
                 } else{
                     // Username doesn't exist, display a generic error message
-                    $login_err = "Invalid username or password.";
+                    $login_err = "Invalid Sangros ID or password.";
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -100,19 +100,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         body{ 
             font: 14px sans-serif;
-            background: linear-gradient(157deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
-            height: 100%;
-            margin: 0;
+            background-image: url("LoginBackground.png");
             background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-size: 105%;
             }
         .wrapper{ width: 360px; padding: 20px; }
     </style>    
 </head>
 <body>
     <div class="wrapper">
-        <h2>Login</h2>
-        <p>Please fill in your credentials to login.</p>
+        <h2 style="color:white;">Login</h2>
+        <p style="color:white;">Please fill in your credentials to login.</p>
 
         <?php 
         if(!empty($login_err)){
@@ -122,19 +120,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
-                <label>Username</label>
+                <label style="color:white;">Sangros ID</label>
                 <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                 <span class="invalid-feedback"><?php echo $username_err; ?></span>
             </div>    
             <div class="form-group">
-                <label>Password</label>
+                <label style="color:white;">Password</label>
                 <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
                 <span class="invalid-feedback"><?php echo $password_err; ?></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="color:red;">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+            <p style="color:white;">Don't have a Sangros ID? <a href="register.php" style="color:red;">Sign up now</a>.</p>
         </form>
     </div>
 </body>
