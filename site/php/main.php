@@ -153,7 +153,7 @@ function closeNav() {
          "USERNAME: {$row['username']} <br> ".
          "GOAL ID : {$row['goal_id']} <br> ".
          "--------------------------------<br>";
-         echo "Welcome, {$row['username']}<br> You are logged in to the Sangros developer portal.<br>";
+         echo "Welcome, {$row['username']}<br> You are logged into the Sangros developer portal.<br>";
    }
    
    echo "Fetched data successfully!";
