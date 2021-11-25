@@ -89,11 +89,31 @@
      font-size: 150px;
      color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
     }
+    .goalname {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: medium;
+      color: black;
+      text-align: left;
+      font-size: 40px;
+    }
+      .cost {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: medium;
+      color: black;
+      text-align: right;
+      font-size: 40px;
+      
+    }
     body {
       background: rgb(245,0,219);
       background: linear-gradient(0deg, rgba(245,0,219,1) 0%, rgba(74,0,201,1) 100%);
     }
+    /* Solid border */
+hr.solid {
+  border-top: 3px solid #bbb;
+}
   </style>
+  
     </head>
     <body>
     <div id="mySidebar" class="sidebar">
@@ -119,5 +139,33 @@ function closeNav() {
 }
 
 </script>
+<p class="deftext">Your goals</p>
+<hr class="solid"></hr> 
+<?php
+   $dbhost = 'localhost';
+   $dbuser = 'root';
+   $dbpass = '';
+   
+   $conn = new mysqli($dbhost, $dbuser, $dbpass);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . $conn->error);
+   }
+   
+   $sql = 'SELECT doel.id, username, goal_id, priority, descrip, cost  FROM users, doel WHERE doel.id = users.id';
+   $conn->select_db('app');
+   $retval = $conn ->query( $sql);
+   
+   if(! $retval ) {
+      die('Could not get data: ' . $conn->error);
+   }
+   
+   while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
+      echo "<p class=goalname>{$row['descrip']}</p><p class=cost>€{$row['cost']}</p>";
+   }
+
+?>
+
+
 </body>
 </html>
