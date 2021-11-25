@@ -92,7 +92,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       font-size: 80px;
       
     }
-    .fuckoffphp {
+    .text {
      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
      font-size: large;
      text-align: center;
@@ -168,7 +168,7 @@ function closeNav() {
        ?>
       <?php
       echo <<<EOD
-      <p class="fuckoffphp">€$total</p>
+      <p class="text">€$total</p>
       EOD;
        ?>
        <?php

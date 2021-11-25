@@ -82,7 +82,7 @@
       font-size: 80px;
       
     }
-    .fuckoffphp {
+    .text {
      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
      font-size: large;
      text-align: center;
