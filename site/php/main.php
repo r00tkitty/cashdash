@@ -9,14 +9,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 ?>
 <html>
-    <head>
+   <head>
         <meta charset="utf-8">
         <title>CashDash</title>
         <link rel="icon" href="favicon.png">
 
 	  	  <style type="text/css">
         /* The sidebar menu */
-    .sidebar {
+  .sidebar {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
@@ -129,9 +129,39 @@ function closeNav() {
 }
 
 </script>
+<?php
+   $dbhost = 'localhost';
+   $dbuser = 'root';
+   $dbpass = '';
+   
+   $conn = new mysqli($dbhost, $dbuser, $dbpass);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . $conn->error);
+   }
+   
+   $sql = 'SELECT doel.id, username, goal_id, priority, descrip  FROM users, doel WHERE doel.id = users.id';
+   $conn->select_db('app');
+   $retval = $conn ->query( $sql);
+   
+   if(! $retval ) {
+      die('Could not get data: ' . $conn->error);
+   }
+   
+   while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
+      echo "ID :{$row['id']}  <br> ".
+         "USERNAME: {$row['username']} <br> ".
+         "GOAL ID : {$row['goal_id']} <br> ".
+         "--------------------------------<br>";
+         echo "Welcome, {$row['username']}<br> You are logged in to the Sangros developer portal.<br>";
+   }
+   
+   echo "Fetched data successfully!";
+   
+   $conn->close();
+?>
 <p class="deftext">Hello, <?php echo htmlspecialchars($_SESSION["username"]); ?><br>You currently have</p>
        <?php
-      $username = "DuneDude";
       $total = 90;
       $away = "10";
       $goal1 = "Saving goal 1";
