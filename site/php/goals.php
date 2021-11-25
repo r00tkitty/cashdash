@@ -98,7 +98,7 @@
     <body>
     <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="stats.php">Graph</a>
+  <a href="goals.php">Graph</a>
   <a href="main.php">Main</a>
   <a href="spendings.php">Spend/Get</a>
   <a href="Login.php">Profile</a>
