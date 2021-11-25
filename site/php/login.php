@@ -103,6 +103,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             background-image: url("LoginBackground.png");
             background-repeat: no-repeat;
             background-size: 105%;
+            background-color: black;
             }
         .wrapper{ width: 360px; padding: 20px; }
     </style>    
