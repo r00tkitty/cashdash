@@ -152,7 +152,14 @@ function closeNav() {
       die('Could not connect: ' . $conn->error);
    }
    
-   $sql = 'SELECT doel.id, username, goal_id, priority, descrip, cost  FROM users, doel WHERE doel.id = users.id';
+   $sql = 'SELECT
+   doel.id, goal_id, username, priority, descript
+ FROM
+   users
+ JOIN
+   doel ON doel.id = users.id
+ WHERE
+   username = $_SESSION["username"]';
    $conn->select_db('app');
    $retval = $conn ->query( $sql);
    
