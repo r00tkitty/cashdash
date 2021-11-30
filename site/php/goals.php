@@ -1,3 +1,16 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+  
+
+}
+$username = $_SESSION["username"];
+?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -152,16 +165,16 @@ function closeNav() {
       die('Could not connect: ' . $conn->error);
    }
    
-   $sql = 'SELECT
+   $sql = "SELECT
    doel.id, goal_id, username, priority, descrip, cost
  FROM
    users
  JOIN
    doel ON doel.id = users.id
  WHERE
-   username = $_SESSION["username"]';
+   users.username = '$username'";
    $conn->select_db('app');
-   $retval = $conn ->query( $sql);
+   $retval = $conn ->query($sql);
    
    if(! $retval ) {
       die('Could not get data: ' . $conn->error);
