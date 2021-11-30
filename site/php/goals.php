@@ -153,7 +153,7 @@ function closeNav() {
    }
    
    $sql = 'SELECT
-   doel.id, goal_id, username, priority, descript
+   doel.id, goal_id, username, priority, descrip, cost
  FROM
    users
  JOIN
