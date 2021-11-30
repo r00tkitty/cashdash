@@ -7,6 +7,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+$username = $_SESSION["username"];
 ?>
 <html>
    <head>
@@ -140,7 +141,12 @@ function closeNav() {
       die('Could not connect: ' . $conn->error);
    }
    
-   $sql = 'SELECT doel.id, username, goal_id, priority, descrip  FROM users, doel WHERE doel.id = users.id';
+   $sql = "SELECT
+  id, username
+ FROM
+   users
+ WHERE
+   users.username = '$username'";
    $conn->select_db('app');
    $retval = $conn ->query( $sql);
    
@@ -151,7 +157,6 @@ function closeNav() {
    while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
       echo "ID :{$row['id']}  <br> ".
          "USERNAME: {$row['username']} <br> ".
-         "GOAL ID : {$row['goal_id']} <br> ".
          "--------------------------------<br>";
          echo "Welcome, {$row['username']}<br> You are logged into the Sangros developer portal.<br>";
    }
