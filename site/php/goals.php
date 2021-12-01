@@ -118,6 +118,7 @@ $username = $_SESSION["username"];
       
     }
     body {
+      font: 14px sans-serif; text-align: center;
       background: rgb(245,0,219);
       background: linear-gradient(0deg, rgba(245,0,219,1) 0%, rgba(74,0,201,1) 100%);
     }

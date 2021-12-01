@@ -104,6 +104,7 @@ $username = $_SESSION["username"];
      color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
     }
     body {
+      font: 14px sans-serif; text-align: center;
       background: rgb(245,0,219);
       background: linear-gradient(0deg, rgba(245,0,219,1) 0%, rgba(74,0,201,1) 100%);
     }
