@@ -142,14 +142,20 @@ function closeNav() {
    }
    
    $sql = "SELECT username, (SELECT SUM(recieve.amount)
-FROM users, recieve
-WHERE users.username = '$username' AND users.id = recieve.id) AS recieve,
-(SELECT SUM(spend.amount)
-FROM users, spend
-WHERE users.username = '$username' AND users.id = spend.id) AS SPEND
-
-FROM users
-WHERE users.username = '$username'";
+   FROM users, recieve
+   WHERE users.username = '$username' AND users.id = recieve.id) AS recieve,
+   (SELECT SUM(spend.amount)
+   FROM users, spend
+   WHERE users.username = '$username' AND users.id = spend.id) AS SPEND,
+   (SELECT cost
+   FROM users, doel
+   WHERE users.username = '$username' AND users.id = doel.id AND priority = 1) AS goal1cost,
+   (SELECT descrip
+   FROM users, doel
+   WHERE users.username = '$username' AND users.id = doel.id AND priority = 1) AS descript
+   
+   FROM users
+   WHERE users.username = '$username'";
    $conn->select_db('app');
    $retval = $conn ->query( $sql);
    
@@ -159,23 +165,20 @@ WHERE users.username = '$username'";
    
    while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
       echo "<p class='deftext'>Hello, $username. <br>You currently have</p>";
-   
    $spend = "{$row['SPEND']}";
    $recieve = "{$row['recieve']}";
    $total = $spend + $recieve;
+   $cost = "{$row['goal1cost']}";
+   $descript = "{$row['descript']}";
+   $left = $cost - $total;
    echo <<<EOD
       <p class="text">€$total</p>
       EOD;
-  
+      echo <<<EOD
+      <p class="deftext">You are $left away from reaching<br>$descript</p>
+      EOD;
    $conn->close();
   }
 ?>
-      <?php
-      echo <<<EOD
-      <p class="deftext">You are  from reaching<br>$goal1</p>
-      EOD;
-       ?>
-       <?php
-       ?>
     </body>
 </html>
