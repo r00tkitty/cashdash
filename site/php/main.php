@@ -8,6 +8,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 $username = $_SESSION["username"];
+error_reporting(E_ERROR | E_PARSE);
 ?>
 <html>
    <head>
@@ -110,6 +111,7 @@ $username = $_SESSION["username"];
       
     }
     body {
+      font: 14px sans-serif;
       background: rgb(245,0,219);
       background: linear-gradient(0deg, rgba(245,0,219,1) 0%, rgba(74,0,201,1) 100%);
     }
