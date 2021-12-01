@@ -6,10 +6,9 @@ session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
-  
-
 }
 $username = $_SESSION["username"];
+error_reporting(E_ERROR | E_PARSE);
 ?>
 <html>
     <head>
@@ -101,6 +100,23 @@ $username = $_SESSION["username"];
      text-align: center;
      font-size: 150px;
      color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
+    
+    
+  }
+
+  .error {
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+     text-align: center;
+     font-size: 200%;
+     margin-top: -20px;
+     color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
+    }
+    .error2 {
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+     text-align: center;
+     font-size: 150%;
+     margin-top: -20px;
+     color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
     }
     .goalname {
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -178,7 +194,7 @@ function closeNav() {
    $retval = $conn ->query($sql);
    
    if(! $retval ) {
-      die('Could not get data: ' . $conn->error);
+      die('<img src="error.png"></img> <br><p class="error">We are having issues fetching your data.</p><br><p class="error2">Please try again later.</p>' . $conn->error);
    }
    
    while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
