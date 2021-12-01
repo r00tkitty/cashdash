@@ -134,5 +134,6 @@ function closeNav() {
 }
 
 </script>
+<img src="construction.png" style="width: 40%;"></img>
 </body>
 </html>

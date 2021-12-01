@@ -127,6 +127,20 @@ error_reporting(E_ERROR | E_PARSE);
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+.error {
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+     text-align: center;
+     font-size: 200%;
+     margin-top: -20px;
+     color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
+    }
+    .error2 {
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+     text-align: center;
+     font-size: 150%;
+     margin-top: -20px;
+     color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
+    }
     .text {
      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
      font-size: large;
@@ -274,7 +288,7 @@ function closeNav() {
    $retval = $conn ->query( $sql);
    
    if(! $retval ) {
-      die('Could not get data: ' . $conn->error);
+    die('<img src="error.png"></img> <br><p class="error">We are having issues fetching your data.</p><br><p class="error2">Please try again later.</p>' . $conn->error);
    }
    
    while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
