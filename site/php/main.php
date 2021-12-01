@@ -141,12 +141,15 @@ function closeNav() {
       die('Could not connect: ' . $conn->error);
    }
    
-   $sql = "SELECT
-  id, username
- FROM
-   users
- WHERE
-   users.username = '$username'";
+   $sql = "SELECT username, (SELECT SUM(recieve.amount)
+FROM users, recieve
+WHERE users.username = '$username' AND users.id = recieve.id) AS recieve,
+(SELECT SUM(spend.amount)
+FROM users, spend
+WHERE users.username = '$username' AND users.id = spend.id) AS SPEND
+
+FROM users
+WHERE users.username = '$username'";
    $conn->select_db('app');
    $retval = $conn ->query( $sql);
    
@@ -155,31 +158,24 @@ function closeNav() {
    }
    
    while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
-      echo "ID :{$row['id']}  <br> ".
-         "USERNAME: {$row['username']} <br> ".
-         "--------------------------------<br>";
-         echo "Welcome, {$row['username']}<br> You are logged into the Sangros developer portal.<br>";
-   }
+      echo "<p class='deftext'>Hello, $username. <br>You currently have</p>";
    
-   echo "Fetched data successfully!";
-   
-   $conn->close();
-?>
-<p class="deftext">Hello, <?php echo htmlspecialchars($_SESSION["username"]); ?><br>You currently have</p>
-       <?php
-      $total = 90;
-      $away = "10";
-      $goal1 = "Saving goal 1";
-       ?>
-      <?php
-      echo <<<EOD
+   $spend = "{$row['SPEND']}";
+   $recieve = "{$row['recieve']}";
+   $total = $spend + $recieve;
+   echo <<<EOD
       <p class="text">€$total</p>
       EOD;
+  
+   $conn->close();
+  }
+?>
+      <?php
+      echo <<<EOD
+      <p class="deftext">You are  from reaching<br>$goal1</p>
+      EOD;
        ?>
        <?php
-      echo <<<EOD
-      <p class="deftext">You are $away from reaching<br>$goal1</p>
-      EOD;
        ?>
     </body>
 </html>
