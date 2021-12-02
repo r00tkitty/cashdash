@@ -147,11 +147,11 @@ hr.solid {
     </head>
     <body>
     <div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="goals.php">Goals</a>
-  <a href="main.php">Main</a>
-  <a href="spendings.php">Spend/Get</a>
-  <a href="Login.php">Profile</a>
+    <a style="text-align:center" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a style="text-align:center" href="main.php">Main</a>
+  <a style="text-align:center" href="goals.php">Goals</a>
+  <a style="text-align:center" href="spendings.php">Spend/Get</a>
+  <a style="text-align:center" href="Login.php">Profile</a>
   </div>
 
   <div id="main">
@@ -193,12 +193,21 @@ function closeNav() {
    $conn->select_db('app');
    $retval = $conn ->query($sql);
    
+   $sql = "SELECT
+   COUNT(goal_id) as bruh
+ FROM
+   users
+ JOIN
+   doel ON doel.id = users.id
+ WHERE
+   users.username = '$username'";
+   
    if(! $retval ) {
-      die('<img src="error.png"></img> <br><p class="error">We are having issues fetching your data.</p><br><p class="error2">Please try again later.</p>' . $conn->error);
+      die('<img src="error.png" style="display: block; margin-left: auto; margin-right: auto;"></img> <br><p class="error">We are having issues fetching your data.</p><br><p class="error2">Please try again later.</p>' . $conn->error);
    }
    
    while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
-      echo "<p class=goalname style='margin-top: -1px'>{$row['descrip']}</p><p class=cost>€{$row['cost']}</p>
+      echo "<p class=goalname style='margin-top: -1px'>{$row['descrip']}</p><p class=cost>€{$row['cost']}<p class=cost>€{$row['bruh']}</p>
       <hr class='solid' style='margin-top: -45px'></hr>";
    }
 ?>

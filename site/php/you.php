@@ -115,11 +115,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </head>
 <body>
 <div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="goals.php">Goals</a>
-  <a href="main.php">Main</a>
-  <a href="spendings.php">Spend/Get</a>
-  <a href="Login.php">Profile</a>
+  <a style="text-align:center" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a style="text-align:center" href="main.php">Main</a>
+  <a style="text-align:center" href="goals.php">Goals</a>
+  <a style="text-align:center" href="spendings.php">Spend/Get</a>
+  <a style="text-align:center" href="Login.php">Profile</a>
   </div>
 
   <div id="main">
