@@ -142,6 +142,6 @@ function closeNav() {
 }
 
 </script>
-<img src="construction.png" class="construcc" style="width: 50%;"></img>
+<img src="construction.png" class="construcc" style="width: 40%; margin-left:auto; margin-right:auto;"></img>
 </body>
 </html>
