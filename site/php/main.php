@@ -307,9 +307,14 @@ function closeNav() {
       <p class="youare">You are €$left away from reaching your goal:<br><bi>$descript</i></p>
       EOD;
     }
-    else {
+    elseif ($left < 0){
       echo <<<EOD
       <p class="youare">You have more than €$cost.<br>You can buy $descript!</p>
+      EOD;
+    }
+    else{
+      echo <<<EOD
+      <p class="youare">You don't have any goals.<br><a href="goals.php">Make some!</a></p>
       EOD;
     }
    $conn->close();
