@@ -302,9 +302,16 @@ function closeNav() {
    echo <<<EOD
       <p class="text">€$total</p>
       EOD;
+      if ($left > 0){
       echo <<<EOD
       <p class="youare">You are €$left away from reaching your goal:<br><bi>$descript</i></p>
       EOD;
+    }
+    else {
+      echo <<<EOD
+      <p class="youare">You have more than €$cost.<br>You can buy $descript!</p>
+      EOD;
+    }
    $conn->close();
   }
 ?>
