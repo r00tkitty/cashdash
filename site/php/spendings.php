@@ -104,9 +104,17 @@ $username = $_SESSION["username"];
      color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
     }
     body {
-      font: 14px sans-serif; text-align: center;
+      font: 14px sans-serif; text-align: left;
       background: rgb(245,0,219);
       background: linear-gradient(0deg, rgba(245,0,219,1) 0%, rgba(74,0,201,1) 100%);
+    
+    }
+    construcc {
+      display: block;
+      margin-left:auto;
+      margin-right:auto;
+      width: 40%;
+      text-align: center;
     }
   </style>
     </head>
@@ -120,7 +128,7 @@ $username = $_SESSION["username"];
   </div>
 
   <div id="main">
-  <button class="openbtn" onclick="openNav()"><img src="favicon.png" style="height: 40px;"></button>
+  <button class="openbtn" onclick="openNav()"><img src="favicon.png" style="height: 40px; position:fixed;"></button>
 </div>
   <script>
 function openNav() {
@@ -134,6 +142,6 @@ function closeNav() {
 }
 
 </script>
-<img src="construction.png" style="width: 40%;"></img>
+<img src="construction.png" class="construcc" style="width: 50%;"></img>
 </body>
 </html>

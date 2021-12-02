@@ -141,7 +141,7 @@ error_reporting(E_ERROR | E_PARSE);
       
     }
     body {
-      font: 14px sans-serif; text-align: center;
+      font: 14px sans-serif; text-align: left;
       background: rgb(245,0,219);
       background: linear-gradient(0deg, rgba(245,0,219,1) 0%, rgba(74,0,201,1) 100%);
     }
@@ -162,7 +162,7 @@ hr.solid {
   </div>
 
   <div id="main">
-  <button class="openbtn" onclick="openNav()"><img src="favicon.png" style="height: 50px;"></button>
+  <button class="openbtn" onclick="openNav()"><img src="favicon.png" style="height: 40px; position:fixed;"></button>
 </div>
   <script>
 function openNav() {

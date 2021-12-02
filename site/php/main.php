@@ -236,15 +236,15 @@ error_reporting(E_ERROR | E_PARSE);
     </head>
     <body>
     <div id="mySidebar" class="sidebar">
-  <a style="text-align:center" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a style="text-align:center" href="main.php">Main</a>
-  <a style="text-align:center" href="goals.php">Goals</a>
-  <a style="text-align:center" href="spendings.php">Spend/Get</a>
-  <a style="text-align:center" href="Login.php">Profile</a>
+  <a style="text-align:center;" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a style="text-align:center;" href="main.php">Main</a>
+  <a style="text-align:center;" href="goals.php">Goals</a>
+  <a style="text-align:center;" href="spendings.php">Spend/Get</a>
+  <a style="text-align:center;" href="Login.php">Profile</a>
   </div>
 
   <div id="main">
-  <button class="openbtn" onclick="openNav()"><img src="favicon.png" style="height: 40px;"></button>
+  <button class="openbtn" onclick="openNav()"><img src="favicon.png" style="height: 40px; position:fixed; "></button>
 </div>
   <script>
 function openNav() {
