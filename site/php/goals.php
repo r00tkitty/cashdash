@@ -125,6 +125,13 @@ error_reporting(E_ERROR | E_PARSE);
       text-align: left;
       font-size: 40px;
     }
+    .nothing {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: medium;
+      color: black;
+      text-align: center;
+      font-size: 40px;
+    }
       .cost {
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
       font-size: medium;
@@ -190,26 +197,33 @@ function closeNav() {
    doel ON doel.id = users.id
  WHERE
    users.username = '$username'";
-   $conn->select_db('app');
-   $retval = $conn ->query($sql);
-   
+    $conn->select_db('app');
+    $retval = $conn ->query($sql);
+
    $sql = "SELECT
-   COUNT(goal_id) as bruh
+   COUNT(goal_id) as a
  FROM
    users
  JOIN
    doel ON doel.id = users.id
  WHERE
    users.username = '$username'";
+
+   $conn->select_db('app');
+   $retval2 = $conn ->query($sql);
    
+   if($retval2->fetch_array(MYSQLI_ASSOC)["a"] == 0) {
+echo "<p class='nothing'>You don't have any goals.<br>Make some below!</p>";
+    }
    if(! $retval ) {
       die('<img src="error.png" style="display: block; margin-left: auto; margin-right: auto;"></img> <br><p class="error">We are having issues fetching your data.</p><br><p class="error2">Please try again later.</p>' . $conn->error);
+    
    }
-   
    while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
-      echo "<p class=goalname style='margin-top: -1px'>{$row['descrip']}</p><p class=cost>€{$row['cost']}<p class=cost>€{$row['bruh']}</p>
+      echo "<p class=goalname style='margin-top: -1px'>{$row['descrip']}</p><p class=cost>€{$row['cost']}
       <hr class='solid' style='margin-top: -45px'></hr>";
    }
+  
 ?>
 
 
