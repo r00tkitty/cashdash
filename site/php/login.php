@@ -100,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         body{ 
             font: 14px sans-serif;
-            background-image: url("LoginBackground.png");
+            background-image: url("LoginBackground2.png");
             background-repeat: no-repeat;
             background-size: 105%;
             background-color: black;
