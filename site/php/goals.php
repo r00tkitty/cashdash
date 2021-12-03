@@ -149,6 +149,19 @@ error_reporting(E_ERROR | E_PARSE);
 hr.solid {
   border-top: 3px solid #bbb;
 }
+.addbutton {
+  background-color : #31B0D5;
+  color: white;
+  padding: 10px 50px;
+  border-radius: 300px;
+  border-color: #46b8da;
+}
+
+#mybutton {
+  position: fixed;
+  bottom: 4px;
+  right: 10px;
+}
   </style>
   
     </head>
@@ -226,6 +239,8 @@ echo "<p class='nothing'>You don't have any goals.<br>Make some below!</p>";
   
 ?>
 
-
+<div id="mybutton">
+<a href="addgoal.php"><button class="addbutton"><p style="color: black; font-size: 30px;">+</p></button></a>
+</div>
 </body>
 </html>
