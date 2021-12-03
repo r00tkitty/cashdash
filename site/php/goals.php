@@ -155,12 +155,42 @@ hr.solid {
   padding: 10px 50px;
   border-radius: 300px;
   border-color: #46b8da;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 #mybutton {
   position: fixed;
   bottom: 4px;
   right: 10px;
+  margin-left:auto;
+  margin-right:auto;
+}
+#container{
+    height: 55%;
+    width: 100%;
+    padding:    0px;
+    margin-left: 0%;
+    padding-bottom: 0px;
+    overflow: auto;  /* code added */
+}
+#header{
+    width: 100%;
+    height: 30%;   
+    overflow: hidden;  /* code added to prevent scroll */
+}
+.button-container {
+  height: 10px;
+  position: relative;
+}
+
+.butt-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
   </style>
   
@@ -189,8 +219,10 @@ function closeNav() {
 }
 
 </script>
+<div id="header">
 <p class="deftext">Your goals</p>
-<hr class="solid" style='margin-top: -45px'></hr> 
+</div>
+<div id="container">
 <?php
    $dbhost = 'localhost';
    $dbuser = 'root';
@@ -233,14 +265,16 @@ echo "<p class='nothing'>You don't have any goals.<br>Make some below!</p>";
     
    }
    while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
-      echo "<p class=goalname style='margin-top: -1px'>{$row['descrip']}</p><p class=cost>€{$row['cost']}
-      <hr class='solid' style='margin-top: -45px'></hr>";
+    echo "<hr class='solid' style='margin-top: 0px'></hr><p class=goalname style='margin-top: -1px'>{$row['descrip']}</p><p class=cost>€{$row['cost']}
+    ";
    }
   
 ?>
-
-<div id="mybutton">
-<a href="addgoal.php"><button class="addbutton"><p style="color: black; font-size: 30px;">+</p></button></a>
+</div>
+<div class="button-container">
+  <div class="butt-vertical-center">
+    <a href="addgoal.php"><button style="display: block;margin-left: -6px;margin-right: 9px;margin-top:auto;margin-bottom:auto;background-color : #31B0D5;color: white;padding: 0px 47.5%;border-radius: 209px;border-color: #46b8da;"><p style=" width:auto; color: black; font-size: 30px;">Add</p></button>></a>
+  </div>
 </div>
 </body>
 </html>
