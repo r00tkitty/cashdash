@@ -15,13 +15,14 @@ require_once "config.php";
 // Define variables and initialize with empty values
 $descrip = $cost = "";
 $descrip_err = $cost_err = "";
+$easteregg= "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate username;
     if(empty($_POST["descrip"])){
-      $descrip_err = "Please enter a description.";
+      $descrip_err = "Please enter a description for your goal.";
     } elseif(!preg_match('/^[a-zA-Z0-9_ ]/', ($_POST["descrip"]))){
       $descrip_err = "Description can only contain letters, numbers, spaces and underscores .";
     } else{
@@ -47,10 +48,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // store result
                 $stmt->store_result();
                 if($stmt->num_rows == 5){
-                    $descrip_err = "You have reached the maximum amount of saving goals.";
+                    $descrip_err = "You have reached the maximum amount of saving goals (5). Please delete a goal first!";
                 } else{
                     $descrip = ($_POST["descrip"]);
-                    header("location: goals.php");
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -64,12 +64,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate password
     if(empty($_POST["cost"])){
         $cost_err = "Please enter the amount!";     
-    } elseif ($_POST["cost"] <= 0){
+    } elseif ($_POST["cost"] == 0){
         $cost_err = "Your goal cost must be greater than 0.";
-    } else{
-        $cost = ($_POST["cost"]);
+    }elseif ($_POST["cost"] < 0){
+      $cost_err = "You can't have a negative saving goal, silly!";
+    } 
+    elseif ($_POST["cost"] == 696969.00 || 6969.00 || 696969.69 || 6969.69){
+      $cost_err = "Nice, but i doubt that's something you're saving up for.";
     }
-    
+    else{
+      $cost = ($_POST["cost"]);
+  }
     // Check input errors before inserting in database
     if(empty($descrip_err) && empty($cost_err)){
         
@@ -89,6 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if($stmt->execute()){
                 // Redirect to login page
                 echo "Success!";
+                header("location: goals.php");
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
