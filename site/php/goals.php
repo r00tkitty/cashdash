@@ -273,7 +273,7 @@ echo "<p class='nothing'>You don't have any goals.<br>Make some below!</p>";
 </div>
 <div class="button-container">
   <div class="butt-vertical-center">
-    <a href="addgoal.php"><button style="display: block;margin-left: -6px;margin-right: 9px;margin-top:auto;margin-bottom:auto;background-color : #31B0D5;color: white;padding: 0px 47.5%;border-radius: 209px;border-color: #46b8da;"><p style=" width:auto; color: black; font-size: 30px;">Add</p></button>></a>
+    <a href="addgoal.php"><button style="display: block;margin-left: -6px;margin-right: 9px;margin-top:auto;margin-bottom:auto;background-color : #31B0D5;color: white;padding: 0px 47.5%;border-radius: 209px;border-color: #46b8da;"><p style=" width:auto; color: black; font-size: 30px;">Add</p></button></a>
   </div>
 </div>
 </body>
