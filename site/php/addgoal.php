@@ -69,8 +69,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }elseif ($_POST["cost"] < 0){
       $cost_err = "You can't have a negative saving goal, silly!";
     } 
-    elseif ($_POST["cost"] == 696969.00 || 6969.00 || 696969.69 || 6969.69){
-      $cost_err = "Nice, but i doubt that's something you're saving up for.";
+    elseif ($_POST["cost"] == 6969.00 || $_POST["cost"] == 6969.69 || $_POST["cost"] == 9696.96| $_POST["cost"] == 696.96|| $_POST["cost"] == 969.69){
+      $cost_err = "Nice, but I doubt that's something you're saving up for.";
+    }
+    elseif ($_POST["cost"] > 100000.00){
+      $cost_err = "The maximum cost of your goal can be €100000.<br>(Let's keep it realistic: you're not that rich.)";
     }
     else{
       $cost = ($_POST["cost"]);
@@ -310,11 +313,11 @@ function closeNav() {
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
             <div class="form-group">
-                <input type="text" name="descrip" class="form-control" value="" placeholder="Description">
+                <input type="text" name="descrip" class="form-control" value="" placeholder="Description" maxlength="26"> 
                 
             </div>    
             <div class="form-group">
-                <input type="number" name="cost" min="0" value="0.00" step="0.01" id="resultText" oninput="validate(this)" class="form-control <?php echo (!empty($cost_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cost; ?>">
+                <input type="number" name="cost" min="0" value="0.00" step="0.01" max="100000" id="resultText" oninput="validate(this)" class="form-control <?php echo (!empty($cost_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cost; ?>">
             </div>
             <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red;'>$descrip_err</p>"; ?></span>
             <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red;'>$cost_err</p>"; ?></span>
