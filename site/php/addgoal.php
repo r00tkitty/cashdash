@@ -240,6 +240,14 @@ input[type=submit] {
   border-radius: 4px;
   cursor: pointer;
 }
+button{
+  background-color: #04AA6D;
+  color: black;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 input[type=reset] {
   background-color: #04AA6D;
   color: black;
@@ -306,8 +314,9 @@ function closeNav() {
             <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red;'>$cost_err</p>"; ?></span>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-secondary ml-2" value="Reset">
             </div>
+            <br>
+            <a href="goals.php"><p style="text-align: center;">Click here to go back to your goals.</p></a>
         </form>
 </div>
 </body>
