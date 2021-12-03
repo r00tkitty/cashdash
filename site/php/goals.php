@@ -265,7 +265,13 @@ echo "<p class='nothing'>You don't have any goals.<br>Make some below!</p>";
     
    }
    while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
-    echo "<hr class='solid' style='margin-top: 0px'></hr><p class=goalname style='margin-top: -1px'>{$row['descrip']}</p><p class=cost>€{$row['cost']}
+    echo "<hr class='solid' style='margin-top: 0px'></hr>
+    <a href='' style='text-decoration:none;'>
+      <p style=' display:inline; font-size: 200%; margin-top: 6  0px;'>✖</p>
+    </a>
+  
+      <p class=goalname style='margin-top: -10px;'>{$row['descrip']}</p>
+      <p class=cost style='margin-top: -30px;'>€{$row['cost']}</p>
     ";
    }
   
@@ -273,7 +279,8 @@ echo "<p class='nothing'>You don't have any goals.<br>Make some below!</p>";
 </div>
 <div class="button-container">
   <div class="butt-vertical-center">
-    <a href="addgoal.php"><button style="display: block;margin-left: -6px;margin-right: 9px;margin-top:auto;margin-bottom:auto;background-color : #31B0D5;color: white;padding: 0px 47.5%;border-radius: 209px;border-color: #46b8da;"><p style=" width:auto; color: black; font-size: 30px;">Add</p></button></a>
+    <a href="addgoal.php">
+      <button style="display: block;margin-left: -6px; margin-right: 9px;margin-top:auto;margin-bottom:auto;background-color : rgba(70, 184, 218, 0.5);;color: white;padding: 0px 47.5%;border-radius: 209px;border-color: rgba(70, 184, 218, 0.1);"><p style=" width:auto; color: black; font-size: 30px; opacity: 1;">Add</p></button></a>
   </div>
 </div>
 </body>
