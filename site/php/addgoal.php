@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate username;
     if(empty($_POST["descrip"])){
-      $descrip_err = "Please enter a descripion.";
+      $descrip_err = "Please enter a description.";
     } elseif(!preg_match('/^[a-zA-Z0-9_ ]/', ($_POST["descrip"]))){
       $descrip_err = "Description can only contain letters, numbers, spaces and underscores .";
     } else{
@@ -240,6 +240,30 @@ input[type=submit] {
   border-radius: 4px;
   cursor: pointer;
 }
+input[type=reset] {
+  background-color: #04AA6D;
+  color: black;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=text] {
+  background-color: #000000;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=number] {
+  background-color: #000000;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
   </style>
     </head>
@@ -273,12 +297,13 @@ function closeNav() {
 
             <div class="form-group">
                 <input type="text" name="descrip" class="form-control" value="" placeholder="Description">
-                <span class="invalid-feedback"><?php echo $descrip_err; ?></span>
+                
             </div>    
             <div class="form-group">
                 <input type="number" name="cost" min="0" value="0.00" step="0.01" id="resultText" oninput="validate(this)" class="form-control <?php echo (!empty($cost_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cost; ?>">
-                <span class="invalid-feedback"><?php echo $cost_err; ?></span>
             </div>
+            <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red;'>$descrip_err</p>"; ?></span>
+            <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red;'>$cost_err</p>"; ?></span>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-secondary ml-2" value="Reset">
