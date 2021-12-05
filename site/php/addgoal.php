@@ -29,7 +29,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       elseif(($_POST["descrip"]) == "rickroll"){
         header("Location: https://www.youtube.com/watch?v=dQw4w9WgXcQ"); /* Redirect browser */
   exit();
-    } else{
+    }
+    elseif{
+      elseif(($_POST["descrip"]) == "fun is infinite"){
+        header("Location: "); /* Redirect browser */
+  exit();
+    } 
+    else{
         // Prepare a select statement
         $sql = "SELECT
         doel.id, username, priority, descrip, cost
