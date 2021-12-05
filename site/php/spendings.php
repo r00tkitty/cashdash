@@ -142,6 +142,5 @@ function closeNav() {
 }
 
 </script>
-<p style="text-align: center;"><img src="construction.png" class="construcc" style="width: 40%; "></img></p>
 </body>
 </html>
