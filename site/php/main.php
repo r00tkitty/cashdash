@@ -91,7 +91,7 @@ error_reporting(E_ERROR | E_PARSE);
       font-size: medium;
       color: black;
       text-align: center;
-      font-size: 300%;
+      font-size: 500%;
       -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 2s; /* Firefox < 16 */
         -ms-animation: fadein 2s; /* Internet Explorer */
@@ -145,7 +145,7 @@ error_reporting(E_ERROR | E_PARSE);
      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
      font-size: large;
      text-align: center;
-     font-size: 800%;
+     font-size: 1300%;
      margin-top: -20px;
      color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
      -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
@@ -189,8 +189,8 @@ error_reporting(E_ERROR | E_PARSE);
       font-size: medium;
       color: black;
       text-align: center;
-      font-size: 300%;
-      margin-top: -90px;
+      font-size: 400%;
+      margin-top: 0px;
     text-align: center;
     -webkit-animation: fadein 6s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 6s; /* Firefox < 16 */
@@ -292,20 +292,17 @@ function closeNav() {
    }
    
    while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
-      echo "<p class='deftext'>Hello, $username. <br>You currently have</p>";
+      echo "<p class='deftext' id='main'>Hello, $username. <br>You currently have</p>";
    $spend = "{$row['SPEND']}";
    $recieve = "{$row['recieve']}";
    $total = $spend + $recieve;
    $cost = "{$row['goal1cost']}";
    $descript = "{$row['descript']}";
    $left = $cost - $total;
-   echo <<<EOD
-      <p class="text">€$total</p>
-      EOD;
+   echo  "<div id='main' style='display:flex; justify-content:center; align-items:center; font-size:1300%;'>€$total</div>";
+      
       if ($left > 0){
-      echo <<<EOD
-      <p class="youare">You are €$left away from reaching your goal:<br><bi>$descript</i></p>
-      EOD;
+      echo "<p class='youare'>You are €$left away from reaching your goal:<br><bi>$descript</i></p>";
     }
     elseif ($left < 0){
       echo <<<EOD

@@ -169,7 +169,7 @@ $username = $_SESSION["username"]
   
   /* The button used to open the sidebar */
   .openbtn {
-    font-size: 20px;
+    font-size: 100%;
     cursor: pointer;
     background-color: rgba(128,0,35,0);
     color: white;
@@ -237,17 +237,26 @@ $username = $_SESSION["username"]
   background-color: #f2f2f2;
   padding: 20px;
   width: 25%;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;  
+  width:70%;
+  height:70%;
   margin-left:auto;
-  margin-right:auto;
+      margin-right:auto;
 } 
 input[type=submit] {
-  background-color: #04AA6D;
+  background-color: #c9c916;
   color: black;
   padding: 12px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: auto;
+  font-size: 200%;
 }
 button{
   background-color: #04AA6D;
@@ -257,14 +266,7 @@ button{
   border-radius: 4px;
   cursor: pointer;
 }
-input[type=reset] {
-  background-color: #04AA6D;
-  color: black;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+
 input[type=text] {
   background-color: #000000;
   color: white;
@@ -309,18 +311,18 @@ function closeNav() {
 
 </script>
 <div class="container">   
-<p style="text-align: center;">Insert your new goal here!</p></br>
+<p style="text-align: center; font-size:350%;">Insert your new goal here!</p></br>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
             <div class="form-group">
-                <input type="text" name="descrip" class="form-control" value="" placeholder="Description" maxlength="26"> 
+                <input type="text" name="descrip" class="form-control" value="" placeholder="Description" maxlength="26" style="font-size:300%;">
                 
             </div>    
             <div class="form-group">
-                <input type="number" name="cost" min="0" value="0.00" step="0.01" max="100000" id="resultText" oninput="validate(this)" class="form-control <?php echo (!empty($cost_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cost; ?>">
+                <input type="number" name="cost" min="0" value="0.00" step="0.01" max="100000" id="resultText" style="font-size:300%; width: 200%; margin-top:5%;" size="26" oninput="validate(this)" class="form-control <?php echo (!empty($cost_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cost; ?>">
             </div>
-            <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red;'>$descrip_err</p>"; ?></span>
-            <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red;'>$cost_err</p>"; ?></span>
+            <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$descrip_err</p>"; ?></span>
+            <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$cost_err</p>"; ?></span>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
             </div>
