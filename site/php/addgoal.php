@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         header("Location: https://www.youtube.com/watch?v=dQw4w9WgXcQ"); /* Redirect browser */
   exit();
     }
-    elseif{
+    
       elseif(($_POST["descrip"]) == "fun is infinite"){
         header("Location: "); /* Redirect browser */
   exit();
