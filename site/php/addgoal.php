@@ -25,6 +25,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $descrip_err = "Please enter a description for your goal.";
     } elseif(!preg_match('/^[a-zA-Z0-9_ ]/', ($_POST["descrip"]))){
       $descrip_err = "Description can only contain letters, numbers, spaces and underscores .";
+    }
+      elseif(($_POST["descrip"]) == "rickroll"){
+        header("Location: https://www.youtube.com/watch?v=dQw4w9WgXcQ"); /* Redirect browser */
+  exit();
     } else{
         // Prepare a select statement
         $sql = "SELECT
