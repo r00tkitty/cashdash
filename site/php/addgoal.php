@@ -35,8 +35,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         header("Location: fun is infinite.html"); /* Redirect browser */
   exit();
     } 
-    elseif(($_POST["descrip"]) == ""){
-      header("Location: fun is infinite.html"); /* Redirect browser */
+    elseif(($_POST["descrip"]) == "allyourbasearebelongtous"){
+      header("Location: allyourbase.html"); /* Redirect browser */
 exit();
   } 
     else{
