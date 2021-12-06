@@ -31,8 +31,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   exit();
     }
     
-      elseif(($_POST["descrip"]) == "fun is infinite"){
-        header("Location: "); /* Redirect browser */
+      elseif(($_POST["descrip"]) == "46 12 25"){
+        header("Location: fun is infinite.html"); /* Redirect browser */
   exit();
     } 
     else{
