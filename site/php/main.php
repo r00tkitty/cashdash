@@ -259,6 +259,32 @@ function closeNav() {
 
 </script>
 <?php
+$dbhost = 'localhost';
+$dbuser = 'root';
+$dbpass = '';
+
+$conn = new mysqli($dbhost, $dbuser, $dbpass);
+
+if(! $conn ) {
+   die('Could not connect: ' . $conn->error);
+}
+
+$sql = "SELECT (SELECT MIN(priority)
+FROM users, doel
+WHERE users.username = '$username' AND users.id = doel.id) AS min_prio";
+$conn->select_db('app');
+$retval = $conn ->query( $sql);
+
+if(! $retval ) {
+ die('<img src="error.png" style="display: block; margin-left: auto; margin-right: auto;"></img> <br><p class="error">We are having issues fetching your data.</p><br><p class="error2">Please try again later.</p>' . $conn->error);
+}
+
+while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
+  $minprio = "{$row['min_prio']}";
+  echo "$minprio";
+}
+?>
+<?php
    $dbhost = 'localhost';
    $dbuser = 'root';
    $dbpass = '';
@@ -277,10 +303,10 @@ function closeNav() {
    WHERE users.username = '$username' AND users.id = spend.id) AS SPEND,
    (SELECT cost
    FROM users, doel
-   WHERE users.username = '$username' AND users.id = doel.id AND priority = 1) AS goal1cost,
+   WHERE users.username = '$username' AND users.id = doel.id AND priority = $minprio) AS goal1cost,
    (SELECT descrip
    FROM users, doel
-   WHERE users.username = '$username' AND users.id = doel.id AND priority = 1) AS descript
+   WHERE users.username = '$username' AND users.id = doel.id AND priority = $minprio) AS descript
    
    FROM users
    WHERE users.username = '$username'";
