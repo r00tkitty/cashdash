@@ -37,8 +37,6 @@ if(! $query ) {
 }
 $number_of_rows = $query->num_rows;
 
-echo $number_of_rows;
-
 ?>
 <?php
 // Define variables and initialize with empty values
