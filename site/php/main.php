@@ -280,6 +280,10 @@ if(! $retval ) {
 }
 
 while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
+  if("{$row['min_prio']}" !== null){
+  $minprio = "{$row['min_prio']}";
+  echo "$minprio";}
+  else
   $minprio = "{$row['min_prio']}";
   echo "$minprio";
 }
@@ -303,10 +307,10 @@ while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
    WHERE users.username = '$username' AND users.id = spend.id) AS SPEND,
    (SELECT cost
    FROM users, doel
-   WHERE users.username = '$username' AND users.id = doel.id AND priority = $minprio) AS goal1cost,
+   WHERE users.username = '$username' AND users.id = doel.id AND priority = 1) AS goal1cost,
    (SELECT descrip
    FROM users, doel
-   WHERE users.username = '$username' AND users.id = doel.id AND priority = $minprio) AS descript
+   WHERE users.username = '$username' AND users.id = doel.id AND priority = 1) AS descript
    
    FROM users
    WHERE users.username = '$username'";
@@ -326,8 +330,13 @@ while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
    $descript = "{$row['descript']}";
    $left = $cost - $total;
    echo  "<div id='main' style='display:flex; justify-content:center; align-items:center; font-size:1300%;'>€$total</div>";
-      
-      if ($left > 0){
+      if( (empty($cost) && empty($descript))){ 
+     echo <<<EOD
+    <p class="youare">You don't have any goals.<br><a href="goals.php">Make some!</a></p>
+    EOD;
+  }
+  else{
+    if ($left > 0){
       echo "<p class='youare'>You are €$left away from reaching your goal:<br><bi>$descript</i></p>";
     }
     elseif ($left < 0){
@@ -337,11 +346,14 @@ while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
     }
     else{
       echo <<<EOD
-      <p class="youare">You don't have any goals.<br><a href="goals.php">Make some!</a></p>
+      <p class="youare">Something went wrong<br><a href="goals.php">Make some!</a></p>
       EOD;
     }
+    
    $conn->close();
-  }
+    }
+}
+
 ?>
     </body>
 </html>
