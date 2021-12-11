@@ -7,11 +7,40 @@ session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
-  
-
 }
 // Include config file
-require_once "config.php";
+require_once "config.php";?>
+<?php
+$dbhost = 'localhost';
+$dbuser = 'root';
+$dbpass = '';
+
+$conn = new mysqli($dbhost, $dbuser, $dbpass);
+
+if(! $conn ) {
+   die('Could not connect: ' . $conn->error);
+}
+$username = $_SESSION["username"];  
+$query = $mysqli->prepare("SELECT
+doel.id, username, priority, descrip, cost
+FROM
+users
+JOIN
+doel ON doel.id = users.id
+WHERE
+users.username = '$username'");
+$query->execute();
+$query->store_result();
+
+if(! $query ) {
+ die('<img src="error.png" style="display: block; margin-left: auto; margin-right: auto;"></img> <br><p class="error">We are having issues fetching your data.</p><br><p class="error2">Please try again later.</p>' . $conn->error);
+}
+$number_of_rows = $query->num_rows;
+
+echo $number_of_rows;
+
+?>
+<?php
 // Define variables and initialize with empty values
 $descrip = $cost = "";
 $descrip_err = $cost_err = "";
@@ -96,16 +125,17 @@ exit();
     if(empty($descrip_err) && empty($cost_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO doel (id, descrip, cost) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO doel (id, descrip, cost, priority) VALUES (?, ?, ?, ?)";
          
         if($stmt = $mysqli->prepare($sql)){
             // Bind variables to the prepared statement as parameters
-            $stmt->bind_param("sss", $id, $param_descrip, $param_cost);
+            $stmt->bind_param("ssss", $id, $param_descrip, $param_cost, $param_priority);
             
             // Set parameters
             $id = $_SESSION["id"];
             $param_descrip = $descrip;
             $param_cost = $cost;
+            $param_priority = $number_of_rows + 1;
             
             // Attempt to execute the prepared statement
             if($stmt->execute()){
@@ -125,7 +155,7 @@ exit();
     $mysqli->close();
 }
 
-$username = $_SESSION["username"]
+
 ?>
 <html>
     <head>
