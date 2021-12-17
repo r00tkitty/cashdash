@@ -119,11 +119,27 @@ exit();
     else{
       $cost = ($_POST["cost"]);
   }
+  if(empty($_POST["cost"])){
+    $cost_err = "Please enter the amount!";     
+} elseif ($_POST["cost"] == "default"){
+    $cost_err = "Enter a type";
+}elseif ($_POST["cost"] < 0){
+  $cost_err = "You can't have a negative saving goal, silly!";
+} 
+elseif ($_POST["cost"] == 6969.00 || $_POST["cost"] == 6969.69 || $_POST["cost"] == 9696.96| $_POST["cost"] == 696.96|| $_POST["cost"] == 969.69){
+  $cost_err = "Nice, but I doubt that's something you're saving up for.";
+}
+elseif ($_POST["cost"] > 100000.00){
+  $cost_err = "The maximum cost of your goal can be €100000.<br>(Let's keep it realistic: you're not that rich.)";
+}
+else{
+  $cost = ($_POST["cost"]);
+}
     // Check input errors before inserting in database
     if(empty($descrip_err) && empty($cost_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO doel (id, descrip, cost, priority) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO  (id, descrip, cost, priority) VALUES (?, ?, ?, ?)";
          
         if($stmt = $mysqli->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -353,7 +369,7 @@ function closeNav() {
 
 </script>
 <div class="container">   
-<p style="text-align: center; font-size:350%;">Insert your new goal here!</p></br>
+<p style="text-align: center; font-size:350%;">Add money here!</p></br>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
             <div class="form-group">
@@ -363,6 +379,18 @@ function closeNav() {
             <div class="form-group">
                 <input type="number" name="cost" min="0" value="0.00" step="0.01" max="100000" id="resultText" style="font-size:300%; width: 200%; margin-top:5%;" size="26" oninput="validate(this)" class="form-control <?php echo (!empty($cost_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cost; ?>">
             </div>
+            <select name="formType" style="font-size:300%; width: 100%; margin-top:5%;" class="form-control">
+<option name="default">Select a type</option>
+<option name="1">Eten</option>
+<option name="2">Kleding</option>
+<option name="3">Electronica</option>
+<option name="4">Cosmetica</option>
+<option name="5">Cadeaus</option>
+<option name="6">Uitgaan</option>
+<option name="7">Games</option>
+<option name="8">Abbonementen</option>
+<option name="9">School</option>
+</select>
             <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$descrip_err</p>"; ?></span>
             <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$cost_err</p>"; ?></span>
             <div class="form-group">
@@ -371,6 +399,20 @@ function closeNav() {
             <br>
             <a href="goals.php"><p style="text-align: center;">Click here to go back to your goals.</p></a>
         </form>
+        <?php
+
+if(isset($_POST['formSubmit']) )
+{
+  $description = $_POST['descrip'];
+  $amount = $_POST['cost'];
+  $type = $_POST['formType'];
+  $errorMessage = "";
+
+  // - - - snip - - - 
+}
+
+?>
+
 </div>
 </body>
 </html>

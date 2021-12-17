@@ -353,7 +353,7 @@ function closeNav() {
 
 </script>
 <div class="container">   
-<p style="text-align: center; font-size:350%;">Insert your new goal here!</p></br>
+<p style="text-align: center; font-size:350%;">Add money here!</p></br>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
             <div class="form-group">
@@ -363,6 +363,11 @@ function closeNav() {
             <div class="form-group">
                 <input type="number" name="cost" min="0" value="0.00" step="0.01" max="100000" id="resultText" style="font-size:300%; width: 200%; margin-top:5%;" size="26" oninput="validate(this)" class="form-control <?php echo (!empty($cost_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cost; ?>">
             </div>
+            <select name="states" style="font-size:300%; width: 100%; margin-top:5%;" class="form-control">
+<option name=""></option>
+<option name="Frenada">Frenada</option>
+<option name="Finalizada">Finalizada</option>
+</select>
             <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$descrip_err</p>"; ?></span>
             <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$cost_err</p>"; ?></span>
             <div class="form-group">
