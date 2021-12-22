@@ -88,11 +88,8 @@ exit();
             if($stmt->execute()){
                 // store result
                 $stmt->store_result();
-                if($stmt->num_rows == 5){
-                    $descrip_err = "You have reached the maximum amount of saving goals (5). Please delete a goal first!";
-                } else{
-                    $descrip = ($_POST["descrip"]);
-                }
+               $descrip = ($_POST["descrip"]);
+                
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -101,6 +98,7 @@ exit();
             $stmt->close();
         }
     }
+    
     
     // Validate password
     if(empty($_POST["cost"])){
