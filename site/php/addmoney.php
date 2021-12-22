@@ -10,34 +10,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 // Include config file
 require_once "config.php";?>
-<?php
-$dbhost = 'localhost';
-$dbuser = 'root';
-$dbpass = '';
 
-$conn = new mysqli($dbhost, $dbuser, $dbpass);
-
-if(! $conn ) {
-   die('Could not connect: ' . $conn->error);
-}
-$username = $_SESSION["username"];  
-$query = $mysqli->prepare("SELECT
-doel.id, username, priority, descrip, cost
-FROM
-users
-JOIN
-doel ON doel.id = users.id
-WHERE
-users.username = '$username'");
-$query->execute();
-$query->store_result();
-
-if(! $query ) {
- die('<img src="error.png" style="display: block; margin-left: auto; margin-right: auto;"></img> <br><p class="error">We are having issues fetching your data.</p><br><p class="error2">Please try again later.</p>' . $conn->error);
-}
-$number_of_rows = $query->num_rows;
-
-?>
 <?php
 // Define variables and initialize with empty values
 $descrip = $cost = "";
@@ -49,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate username;
     if(empty($_POST["descrip"])){
-      $descrip_err = "Please enter a description for your goal.";
+      $descrip = "No description provided";
     } elseif(!preg_match('/^[a-zA-Z0-9_ ]/', ($_POST["descrip"]))){
       $descrip_err = "Description can only contain letters, numbers, spaces and underscores .";
     }
@@ -104,15 +77,12 @@ exit();
     if(empty($_POST["cost"])){
         $cost_err = "Please enter the amount!";     
     } elseif ($_POST["cost"] == 0){
-        $cost_err = "Your goal cost must be greater than 0.";
+        $cost_err = "Your amount must be greater than 0.";
     }elseif ($_POST["cost"] < 0){
-      $cost_err = "You can't have a negative saving goal, silly!";
+      $cost_err = "If you want to spend money, go to the spend page.";
     } 
-    elseif ($_POST["cost"] == 6969.00 || $_POST["cost"] == 6969.69 || $_POST["cost"] == 9696.96| $_POST["cost"] == 696.96|| $_POST["cost"] == 969.69){
-      $cost_err = "Nice, but I doubt that's something you're saving up for.";
-    }
     elseif ($_POST["cost"] > 100000.00){
-      $cost_err = "The maximum cost of your goal can be €100000.<br>(Let's keep it realistic: you're not that rich.)";
+      $cost_err = "Did you win the lottery or soemething?)";
     }
     else{
       $cost = ($_POST["cost"]);
@@ -121,7 +91,7 @@ exit();
     if(empty($descrip_err) && empty($cost_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO doel (id, descrip, cost, priority) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO recieve (id, descrip, cost, priority) VALUES (?, ?, ?)";
          
         if($stmt = $mysqli->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -131,7 +101,7 @@ exit();
             $id = $_SESSION["id"];
             $param_descrip = $descrip;
             $param_cost = $cost;
-            $param_priority = $number_of_rows + 1;
+            $param_type = "1";
             
             // Attempt to execute the prepared statement
             if($stmt->execute()){
@@ -361,7 +331,7 @@ function closeNav() {
             <div class="form-group">
                 <input type="number" name="cost" min="0" value="0.00" step="0.01" max="100000" id="resultText" style="font-size:300%; width: 200%; margin-top:5%;" size="26" oninput="validate(this)" class="form-control <?php echo (!empty($cost_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cost; ?>">
             </div>
-            <select name="states" style="font-size:300%; width: 100%; margin-top:5%;" class="form-control">
+<select name="states" style="font-size:300%; width: 100%; margin-top:5%;" class="form-control">
 <option name=""></option>
 <option name="Frenada">Frenada</option>
 <option name="Finalizada">Finalizada</option>
