@@ -1,4 +1,4 @@
-
+<?php error_reporting(0); ?>
 <?php
 // Initialize the session
 session_start();
@@ -357,7 +357,7 @@ function closeNav() {
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
             <div class="form-group">
-                <input type="text" name="descrip" class="form-control" value="" placeholder="Description" maxlength="26" style="font-size:300%;">
+                <input type="text" name="descrip" class="form-control" value="<?php echo $descrip; ?>" placeholder="Description" maxlength="26" style="font-size:300%;">
                 
             </div>    
             <div class="form-group">
