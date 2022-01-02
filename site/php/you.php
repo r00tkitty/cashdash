@@ -123,7 +123,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   </div>
 
   <div id="main">
-  <button class="openbtn" onclick="openNav()"><img src="favicon.png" style="height: 40px;"></button>
+  <button class="openbtn" onclick="openNav()"><img src="img/favicon.png" style="height: 40px;"></button>
 </div>
   <script>
 function openNav() {

@@ -14,8 +14,12 @@ error_reporting(E_ERROR | E_PARSE);
    <head>
         <meta charset="utf-8">
         <title>CashDash</title>
-        <link rel="icon" href="favicon.png">
-
+        <link rel="icon" href="img/favicon.png">
+        <link rel="stylesheet" type="text/css" href="addtohomescreen.css">
+<script src="addtohomescreen.js"></script>
+<script>
+addToHomescreen();
+</script>
 	  	  <style type="text/css">
         /* The sidebar menu */
   .sidebar {
@@ -244,7 +248,7 @@ error_reporting(E_ERROR | E_PARSE);
   </div>
 
   <div id="main">
-  <button class="openbtn" onclick="openNav()"><img src="favicon.png" style="height: 40px; position:fixed; "></button>
+  <button class="openbtn" onclick="openNav()"><img src="img/favicon.png" style="height: 40px; position:fixed; "></button>
 </div>
   <script>
 function openNav() {
@@ -318,7 +322,7 @@ while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
    $retval = $conn ->query( $sql);
    
    if(! $retval ) {
-    die('<img src="error.png" style="display: block; margin-left: auto; margin-right: auto;"></img> <br><p class="error">We are having issues fetching your data.</p><br><p class="error2">Please try again later.</p>' . $conn->error);
+    die('<img src="img/error.png" style="display: block; margin-left: auto; margin-right: auto;"></img> <br><p class="error">We are having issues fetching your data.</p><br><p class="error2">Please try again later.</p>' . $conn->error);
    }
    
    while($row = $retval->fetch_array(MYSQLI_ASSOC)) {

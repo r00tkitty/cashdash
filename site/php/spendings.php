@@ -16,7 +16,7 @@ $username = $_SESSION["username"];
     <head>
         <meta charset="utf-8">
         <title>CashDash</title>
-        <link rel="icon" href="favicon.png">
+        <link rel="icon" href="img/favicon.png">
 
 	  	  <style type="text/css">
         /* The sidebar menu */
@@ -25,6 +25,7 @@ $username = $_SESSION["username"];
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
+  
     top: 0;
     left: 0;
     background-color: #111; /* Black*/
@@ -128,7 +129,7 @@ $username = $_SESSION["username"];
   </div>
 
   <div id="main">
-  <button class="openbtn" onclick="openNav()"><img src="favicon.png" style="height: 40px; position:fixed;"></button>
+  <button class="openbtn" onclick="openNav()"><img src="img/favicon.png" style="height: 40px; position:fixed;"></button>
 </div>
   <script>
 function openNav() {

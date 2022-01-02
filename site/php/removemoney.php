@@ -1,4 +1,21 @@
 <?php error_reporting(0); ?>
+
+<?php
+// PHP program to pop an alert
+// message box on the screen
+  
+// Function definition
+function function_alert($message) {
+      
+    // Display the alert box 
+    echo "<script>alert('$message');</script>";
+}
+  
+  
+// Function call
+function_alert("Spend page");
+  
+?>
 <?php
 // Initialize the session
 session_start();
@@ -33,7 +50,7 @@ $query->execute();
 $query->store_result();
 
 if(! $query ) {
- die('<img src="error.png" style="display: block; margin-left: auto; margin-right: auto;"></img> <br><p class="error">We are having issues fetching your data.</p><br><p class="error2">Please try again later.</p>' . $conn->error);
+ die('<img src="img/error.png" style="display: block; margin-left: auto; margin-right: auto;"></img> <br><p class="error">We are having issues fetching your data.</p><br><p class="error2">Please try again later.</p>' . $conn->error);
 }
 
 
@@ -63,7 +80,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   exit();
     } 
     elseif(($_POST["descrip"]) == "allyourbasearebelongtous"){
-      header("Location: allyourbase.html"); /* Redirect browser */
+      header("Location: eggs/allyourbase/allyourbase.html"); /* Redirect browser */
 exit();
   } 
     else{
@@ -159,7 +176,7 @@ else{
     <head>
         <meta charset="utf-8">
         <title>CashDash</title>
-        <link rel="icon" href="favicon.png">
+        <link rel="icon" href="img/favicon.png">
 <script>
   var validate = function(e) {
   var t = e.value;
@@ -338,7 +355,7 @@ input[type=number] {
   </div>
 
   <div id="main">
-  <button class="openbtn" onclick="openNav()"><img src="favicon.png" style="height: 40px; position:fixed;"></button>
+  <button class="openbtn" onclick="openNav()"><img src="img/favicon.png" style="height: 40px; position:fixed;"></button>
 </div>
   <script>
 function openNav() {
