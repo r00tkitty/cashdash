@@ -1,21 +1,4 @@
 <?php error_reporting(0); ?>
-
-<?php
-// PHP program to pop an alert
-// message box on the screen
-  
-// Function definition
-function function_alert($message) {
-      
-    // Display the alert box 
-    echo "<script>alert('$message');</script>";
-}
-  
-  
-// Function call
-function_alert("Spend page");
-  
-?>
 <?php
 // Initialize the session
 session_start();
@@ -66,7 +49,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // THIS IS DESCRIPTION
     if(empty($_POST["descrip"])){
-      $descrip_err = "Please enter a description.";
+      $description = "No description given";
     } elseif(!preg_match('/^[a-zA-Z0-9_ ]/', ($_POST["descrip"]))){
       $descrip_err = "Description can only contain letters, numbers, spaces and underscores .";
     }
@@ -156,6 +139,7 @@ else{
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Redirect to goals page
+                header( "location: spendings.php");
                 echo "Success!";
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -382,15 +366,15 @@ function closeNav() {
             </div>
             <select name="formType" style="font-size:300%; width: 100%; margin-top:5%;" class="form-control">
 <option value="default">Select a type</option>
-<option value="food">Food</option>
-<option value="clothes">Clothing</option>
-<option value="electronics">Electronics</option>
-<option value="cosmetics">Cosmetics</option>
-<option value="presents">Presents</option>
-<option value="goingout">Going out</option>
-<option value="microtransactions">Game transactions</option>
-<option value="subscriptions">Subscriptions</option>
-<option value="school">School</option>
+<option value="Food">Food</option>
+<option value="Clothes">Clothing</option>
+<option value="Electronics">Electronics</option>
+<option value="Cosmetics">Cosmetics</option>
+<option value="Presents">Presents</option>
+<option value="Going out">Going out</option>
+<option value="Microtransactions">Game transactions</option>
+<option value="Subscriptions">Subscriptions</option>
+<option value="School">School</option>
 </select>
             <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$descrip_err</p>"; ?></span>
             <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$cost_err</p>"; ?></span><span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$type_err</p>"; ?></span>

@@ -248,7 +248,7 @@ addToHomescreen();
   </div>
 
   <div id="main">
-  <button class="openbtn" onclick="openNav()"><img src="img/favicon.png" style="height: 40px; position:fixed; "></button>
+  <button class="openbtn" onclick="openNav()"><img src="img/favicon.png" style="height: 5%; position:fixed; "></button>
 </div>
   <script>
 function openNav() {

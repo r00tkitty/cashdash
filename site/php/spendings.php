@@ -229,7 +229,7 @@ function closeNav() {
 
 </script>
 <div id="header">
-<p class="deftext">Your goals</p>
+<p class="deftext">Your spendings</p>
 </div>
 <div id="container">
 <?php
@@ -281,7 +281,7 @@ JOIN
 <div class="button-container">
   <div class="butt-vertical-center">
     <a href="choosemenu.php">
-      <button style="display: block;margin-left: -6px; margin-right: 9px;margin-top:auto;margin-bottom:auto;background-color : rgba(70, 184, 218, 0.5);;color: white;padding: 0px 47.5%;border-radius: 209px;border-color: rgba(70, 184, 218, 0.1);"><p style=" width:auto; color: black; font-size: 30px; opacity: 1;">Spend/Get</p></button></a>
+      <button style="display: block;margin-left: -6px; margin-right: 9px;margin-top:auto;margin-bottom:auto;background-color : rgba(70, 184, 218, 0.5);;color: white;padding: 0px 43%;border-radius: 209px;border-color: rgba(70, 184, 218, 0.1);"><p style=" width:auto; color: black; font-size: 30px; opacity: 1;">Spend/Get</p></button></a>
   </div>
 </div>
 </body>

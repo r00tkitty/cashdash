@@ -126,6 +126,7 @@ exit();
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Redirect to goals page
+                header( "location: spendings.php");
                 echo "Success!";
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
