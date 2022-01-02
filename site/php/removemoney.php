@@ -1,4 +1,3 @@
-
 <?php
 // Initialize the session
 session_start();
@@ -22,11 +21,11 @@ if(! $conn ) {
 }
 $username = $_SESSION["username"];  
 $query = $mysqli->prepare("SELECT
-doel.id, username, priority, descrip, cost
+spend.id, username, spend_type, descrip, amount
 FROM
 users
 JOIN
-doel ON doel.id = users.id
+spend ON spend.id = users.id
 WHERE
 users.username = '$username'");
 $query->execute();
@@ -35,21 +34,21 @@ $query->store_result();
 if(! $query ) {
  die('<img src="error.png" style="display: block; margin-left: auto; margin-right: auto;"></img> <br><p class="error">We are having issues fetching your data.</p><br><p class="error2">Please try again later.</p>' . $conn->error);
 }
-$number_of_rows = $query->num_rows;
+
 
 ?>
 <?php
 // Define variables and initialize with empty values
-$descrip = $cost = "";
-$descrip_err = $cost_err = "";
+$description = $cost = "";
+$descrip_err = $cost_err = $type_err = "";
 $easteregg= "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
-    // Validate username;
+    // THIS IS DESCRIPTION
     if(empty($_POST["descrip"])){
-      $descrip_err = "Please enter a description for your goal.";
+      $descrip_err = "Please enter a description.";
     } elseif(!preg_match('/^[a-zA-Z0-9_ ]/', ($_POST["descrip"]))){
       $descrip_err = "Description can only contain letters, numbers, spaces and underscores .";
     }
@@ -67,51 +66,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 exit();
   } 
     else{
-        // Prepare a select statement
+        // SELECT STATEMENT
         $sql = "SELECT
-        doel.id, username, priority, descrip, cost
+        spend.id, username, spend_type, descrip, amount
       FROM
         users
       JOIN
-        doel ON doel.id = users.id
+        spend ON spend.id = users.id
       WHERE
         users.username = ?";
         
         if($stmt = $mysqli->prepare($sql)){
             // Bind variables to the prepared statement as parameters
-            $stmt->bind_param("s", $param_descrip);
+            $stmt->bind_param("s", $param_username);
             
             // Set parameters
-            $param_descrip = $_SESSION["username"];
+            $param_username = $_SESSION["username"];
             
             // Attempt to execute the prepared statement
-            if($stmt->execute()){
-                // store result
-                $stmt->store_result();
-                if($stmt->num_rows == 5){
-                    $descrip_err = "You have reached the maximum amount of saving goals (5). Please delete a goal first!";
-                } else{
-                    $descrip = ($_POST["descrip"]);
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
+            $stmt->execute();
 
             // Close statement
             $stmt->close();
+            $description = ($_POST["descrip"]);
         }
     }
     
-    // Validate password
+    // THIS IS AMOUNT OF MONEY
     if(empty($_POST["cost"])){
         $cost_err = "Please enter the amount!";     
     } elseif ($_POST["cost"] == 0){
-        $cost_err = "Your goal cost must be greater than 0.";
+        $cost_err = "Your cost must be greater than 0.";
     }elseif ($_POST["cost"] < 0){
       $cost_err = "You can't have a negative saving goal, silly!";
     } 
     elseif ($_POST["cost"] == 6969.00 || $_POST["cost"] == 6969.69 || $_POST["cost"] == 9696.96| $_POST["cost"] == 696.96|| $_POST["cost"] == 969.69){
-      $cost_err = "Nice, but I doubt that's something you're saving up for.";
+      $cost_err = "Nice, but I doubt that's something you spent";
     }
     elseif ($_POST["cost"] > 100000.00){
       $cost_err = "The maximum cost of your goal can be €100000.<br>(Let's keep it realistic: you're not that rich.)";
@@ -119,43 +109,36 @@ exit();
     else{
       $cost = ($_POST["cost"]);
   }
-  if(empty($_POST["cost"])){
-    $cost_err = "Please enter the amount!";     
-} elseif ($_POST["cost"] == "default"){
-    $cost_err = "Enter a type";
-}elseif ($_POST["cost"] < 0){
-  $cost_err = "You can't have a negative saving goal, silly!";
-} 
-elseif ($_POST["cost"] == 6969.00 || $_POST["cost"] == 6969.69 || $_POST["cost"] == 9696.96| $_POST["cost"] == 696.96|| $_POST["cost"] == 969.69){
-  $cost_err = "Nice, but I doubt that's something you're saving up for.";
-}
-elseif ($_POST["cost"] > 100000.00){
-  $cost_err = "The maximum cost of your goal can be €100000.<br>(Let's keep it realistic: you're not that rich.)";
+  //type
+
+  if(empty($_POST["formType"])){
+    $type_err = "how";     
+} elseif ($_POST["formType"] == "default"){
+    $type_err = "Enter a type";
 }
 else{
-  $cost = ($_POST["cost"]);
+  $type = ($_POST["formType"]);
 }
     // Check input errors before inserting in database
-    if(empty($descrip_err) && empty($cost_err)){
+    if(empty($descrip_err) && empty($cost_err) && empty($type_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO  (id, descrip, cost, priority) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO spend (id, descrip, amount, spend_type) VALUES (?, ?, ?, ?)";
          
         if($stmt = $mysqli->prepare($sql)){
             // Bind variables to the prepared statement as parameters
-            $stmt->bind_param("ssss", $id, $param_descrip, $param_cost, $param_priority);
+            $stmt->bind_param("ssss", $id, $param_descrip, $param_cost, $param_type);
             
             // Set parameters
             $id = $_SESSION["id"];
-            $param_descrip = $descrip;
+            $param_descrip = $description;
             $param_cost = $cost;
-            $param_priority = $number_of_rows + 1;
+            $param_type = $type;
             
             // Attempt to execute the prepared statement
             if($stmt->execute()){
-                // Redirect to login page
+                // Redirect to goals page
                 echo "Success!";
-                header("location: goals.php");
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -369,7 +352,7 @@ function closeNav() {
 
 </script>
 <div class="container">   
-<p style="text-align: center; font-size:350%;">Add money here!</p></br>
+<p style="text-align: center; font-size:350%;">Spend money here!</p></br>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
             <div class="form-group">
@@ -380,19 +363,19 @@ function closeNav() {
                 <input type="number" name="cost" min="0" value="0.00" step="0.01" max="100000" id="resultText" style="font-size:300%; width: 200%; margin-top:5%;" size="26" oninput="validate(this)" class="form-control <?php echo (!empty($cost_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cost; ?>">
             </div>
             <select name="formType" style="font-size:300%; width: 100%; margin-top:5%;" class="form-control">
-<option name="default">Select a type</option>
-<option name="1">Eten</option>
-<option name="2">Kleding</option>
-<option name="3">Electronica</option>
-<option name="4">Cosmetica</option>
-<option name="5">Cadeaus</option>
-<option name="6">Uitgaan</option>
-<option name="7">Games</option>
-<option name="8">Abbonementen</option>
-<option name="9">School</option>
+<option value="default">Select a type</option>
+<option value="food">Food</option>
+<option value="clothes">Clothing</option>
+<option value="electronics">Electronics</option>
+<option value="cosmetics">Cosmetics</option>
+<option value="presents">Presents</option>
+<option value="goingout">Going out</option>
+<option value="microtransactions">Game transactions</option>
+<option value="subscriptions">Subscriptions</option>
+<option value="school">School</option>
 </select>
             <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$descrip_err</p>"; ?></span>
-            <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$cost_err</p>"; ?></span>
+            <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$cost_err</p>"; ?></span><span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$type_err</p>"; ?></span>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
             </div>
@@ -412,7 +395,9 @@ if(isset($_POST['formSubmit']) )
 }
 
 ?>
-
+<?php echo "$type";?>
+<?php echo "$cost";?>
+<?php echo "$description";?>
 </div>
 </body>
 </html>
