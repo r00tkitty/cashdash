@@ -1,3 +1,4 @@
+<?php error_reporting(0); ?>
 <?php
 // Initialize the session
 session_start();
@@ -96,9 +97,9 @@ exit();
     if(empty($_POST["cost"])){
         $cost_err = "Please enter the amount!";     
     } elseif ($_POST["cost"] == 0){
-        $cost_err = "Your cost must be greater than 0.";
+        $cost_err = "Nice to know you got something for free, but it doesn't really make sense to document that here.";
     }elseif ($_POST["cost"] < 0){
-      $cost_err = "You can't have a negative saving goal, silly!";
+      $cost_err = "If you got money, go to the recieve page!";
     } 
     elseif ($_POST["cost"] == 6969.00 || $_POST["cost"] == 6969.69 || $_POST["cost"] == 9696.96| $_POST["cost"] == 696.96|| $_POST["cost"] == 969.69){
       $cost_err = "Nice, but I doubt that's something you spent";
@@ -132,7 +133,7 @@ else{
             // Set parameters
             $id = $_SESSION["id"];
             $param_descrip = $description;
-            $param_cost = $cost;
+            $param_cost = -1 * abs($cost);
             $param_type = $type;
             
             // Attempt to execute the prepared statement
@@ -356,11 +357,11 @@ function closeNav() {
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
             <div class="form-group">
-                <input type="text" name="descrip" class="form-control" value="" placeholder="Description" maxlength="26" style="font-size:300%;">
+                <input type="text" name="descrip" class="form-control" value="" placeholder="Description" maxlength="26" size="23" style="font-size:300%; width: 200%; margin-top:5%;">
                 
             </div>    
             <div class="form-group">
-                <input type="number" name="cost" min="0" value="0.00" step="0.01" max="100000" id="resultText" style="font-size:300%; width: 200%; margin-top:5%;" size="26" oninput="validate(this)" class="form-control <?php echo (!empty($cost_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cost; ?>">
+                <input type="number" name="cost" min="0" value="0.00" step="0.01" max="100000" id="resultText" style="font-size:300%; width: 200%; margin-top:5%;" size="23" oninput="validate(this)" class="form-control <?php echo (!empty($cost_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cost; ?>">
             </div>
             <select name="formType" style="font-size:300%; width: 100%; margin-top:5%;" class="form-control">
 <option value="default">Select a type</option>
@@ -395,9 +396,6 @@ if(isset($_POST['formSubmit']) )
 }
 
 ?>
-<?php echo "$type";?>
-<?php echo "$cost";?>
-<?php echo "$description";?>
 </div>
 </body>
 </html>
