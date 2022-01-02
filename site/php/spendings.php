@@ -1,4 +1,3 @@
-
 <?php
 // Initialize the session
 session_start();
@@ -7,10 +6,9 @@ session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
-  
-
 }
 $username = $_SESSION["username"];
+error_reporting(E_ERROR | E_PARSE);
 ?>
 <html>
     <head>
@@ -25,7 +23,6 @@ $username = $_SESSION["username"];
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
-  
     top: 0;
     left: 0;
     background-color: #111; /* Black*/
@@ -103,21 +100,109 @@ $username = $_SESSION["username"];
      text-align: center;
      font-size: 150px;
      color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
+    
+    
+  }
+
+  .error {
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+     text-align: center;
+     font-size: 200%;
+     margin-top: -20px;
+     color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
     }
+    .error2 {
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+     text-align: center;
+     font-size: 150%;
+     margin-top: -20px;
+     color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
+    }
+    .goalname {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: medium;
+      color: black;
+      text-align: left;
+      font-size: 40px;
+    }
+    .nothing {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: medium;
+      color: black;
+      text-align: center;
+      font-size: 40px;
+    }
+      .cost {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: medium;
+      color: black;
+      text-align: right;
+      font-size: 40px;
+      
+    }
+    .date {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: medium;
+      color: black;
+      text-align: right;
+      font-size: 150%;
+      
+    }
+
     body {
       font: 14px sans-serif; text-align: left;
       background: rgb(245,0,219);
       background: linear-gradient(0deg, rgba(245,0,219,1) 0%, rgba(74,0,201,1) 100%);
-    
     }
-    construcc {
-      display: block;
-      margin-left:auto;
-      margin-right:auto;
-      width: 40%;
-      text-align: center;
-    }
+    /* Solid border */
+hr.solid {
+  border-top: 3px solid #bbb;
+}
+.addbutton {
+  background-color : #31B0D5;
+  color: white;
+  padding: 10px 50px;
+  border-radius: 300px;
+  border-color: #46b8da;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+#mybutton {
+  position: fixed;
+  bottom: 4px;
+  right: 10px;
+  margin-left:auto;
+  margin-right:auto;
+}
+#container{
+    height: 55%;
+    width: 100%;
+    padding:    0px;
+    margin-left: 0%;
+    padding-bottom: 0px;
+    overflow: auto;  /* code added */
+}
+#header{
+    width: 100%;
+    height: 30%;   
+    overflow: hidden;  /* code added to prevent scroll */
+}
+.button-container {
+  height: 10px;
+  position: relative;
+}
+
+.butt-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
   </style>
+  
     </head>
     <body>
     <div id="mySidebar" class="sidebar">
@@ -129,7 +214,7 @@ $username = $_SESSION["username"];
   </div>
 
   <div id="main">
-  <button class="openbtn" onclick="openNav()"><img src="img/favicon.png" style="height: 40px; position:fixed;"></button>
+  <button class="openbtn" onclick="openNav()"><img src="img/favicon.png" style="height: 5%; position:fixed;"></button>
 </div>
   <script>
 function openNav() {
@@ -143,6 +228,61 @@ function closeNav() {
 }
 
 </script>
-<p alt="" style="text-align: center;"><img src="construction.png" class="construcc" style="width: 40%; "><br>This part of the site is still under development. Please come back later!</img></p>
+<div id="header">
+<p class="deftext">Your goals</p>
+</div>
+<div id="container">
+<?php
+   $dbhost = 'localhost';
+   $dbuser = 'root';
+   $dbpass = '';
+   
+   $conn = new mysqli($dbhost, $dbuser, $dbpass);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . $conn->error);
+   }
+   
+   $sql = "SELECT spend.id, amount, descrip, amount, spend_type, date_when from spend
+JOIN
+   users ON users.id = spend.id
+   WHERE users.username = '$username'
+   UNION
+   SELECT recieve.id, amount, descrip, amount, null as spend_type, date_when from recieve
+JOIN
+   users ON users.id = recieve.id
+   WHERE users.username = '$username'
+   ORDER BY date_when DESC
+
+";
+    $conn->select_db('app');
+    $retval = $conn ->query($sql);
+
+   if(! $retval ) {
+      die('<img src="img/error.png" style="display: block; margin-left: auto; margin-right: auto;"></img> <br><p class="error">We are having issues fetching your data.</p><br><p class="error2">Please try again later.</p>' . $conn->error);
+    
+   }
+   while($row = $retval->fetch_array(MYSQLI_ASSOC)) {
+    echo "<hr class='solid' style='margin-top: 0px'></hr>
+    <a href='' style='text-decoration:none;'>
+    </a>
+  
+      <span class=goalname style='margin-top: -10px;'>{$row['descrip']}</span>
+      <span class=date style='margin-top: -10px; color:rgba(0, 0, 0, 0.5);'>{$row['date_when']}</span>
+      <br>
+      <span class=goalname style='margin-top: 10px; color:rgba(0, 0, 0, 0.5);'>{$row['spend_type']}</span>
+      <br>
+      <p class=cost style='margin-top: -30px;'>€{$row['amount']}</p>
+    ";
+   }
+  
+?>
+</div>
+<div class="button-container">
+  <div class="butt-vertical-center">
+    <a href="choosemenu.php">
+      <button style="display: block;margin-left: -6px; margin-right: 9px;margin-top:auto;margin-bottom:auto;background-color : rgba(70, 184, 218, 0.5);;color: white;padding: 0px 47.5%;border-radius: 209px;border-color: rgba(70, 184, 218, 0.1);"><p style=" width:auto; color: black; font-size: 30px; opacity: 1;">Spend/Get</p></button></a>
+  </div>
+</div>
 </body>
 </html>
