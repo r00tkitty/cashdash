@@ -14,20 +14,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
-    <link rel="stylesheet" href="main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         html {
          height: 100%;
         }
         body{ 
-            font: 14px sans-serif; text-align: center;
+            font: 14px sans-serif; text-align: left;
             background: linear-gradient(157deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
             height: 100%;
-            margin: 0;
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
-            /* The sidebar menu */
+               /* The sidebar menu */
     .sidebar {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
@@ -91,9 +90,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   }
   
   /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-  @media screen and (max-height: 450px) {
+  @media screen and (max-width: 720px) {
     .sidebar {padding-top: 15px;}
     .sidebar a {font-size: 18px;}
+    .deftext{font-size: 100%;}
   }
   /*this is the text i'm gonna use*/
     .deftext {
@@ -101,7 +101,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       font-size: medium;
       color: black;
       text-align: center;
-      font-size: 80px;
+      font-size: 200%;
       
     }
     .text {
@@ -110,7 +110,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
      text-align: center;
      font-size: 150px;
      color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
-    }
+    
+    
+  }
+
+  .center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+}
+
     </style>
 </head>
 <body>
@@ -123,7 +136,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   </div>
 
   <div id="main">
-  <button class="openbtn" onclick="openNav()"><img src="img/favicon.png" style="height: 40px;"></button>
+  <button class="openbtn" onclick="openNav()"><img src="img/favicon.png" style="height: 5%; position:fixed;"></button>
 </div>
   <script>
 function openNav() {
@@ -137,11 +150,11 @@ function closeNav() {
 }
 
 </script>
-    <h1 class="my-5">Hi there, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>.</br>What do you want to do today?</h1>
-    <p>
-        <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a></br></br>
-        
-        <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
-    </p>
+    <h1 class="deftext">Hi there, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>.</br>What do you want to do today?</h1>
+    
+    <div class="container">
+      <button class="center"><a href="reset-password.php">Reset Your Password</a></button>
+    </div>
+        <a href="logout.php" class="signouty">Sign Out of Your Account</a></div>
 </body>
 </html>
