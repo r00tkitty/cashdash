@@ -16,192 +16,20 @@ error_reporting(E_ERROR | E_PARSE);
         <title>CashDash</title>
         <link rel="icon" href="img/favicon.png">
 
-	  	  <style type="text/css">
-        /* The sidebar menu */
-    .sidebar {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: #111; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.3s; /* 0.5 second transition effect to slide in the sidebar */
-    background: rgb(26,0,89);
-    background: linear-gradient(135deg, rgba(26,0,89,1) 0%, rgba(128,0,35,1) 70%);
-  }
-  
-  /* The sidebar links */
-  .sidebar a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  /* When you mouse over the navigation links, change their color */
-  .sidebar a:hover {
-    color: #4A00FF;
-    transition: 0.4s;
-
-  }
-  
-  /* Position and style the close button (top right corner) */
-  .sidebar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-  
-  /* The button used to open the sidebar */
-  .openbtn {
-    font-size: 20px;
-    cursor: pointer;
-    background-color: rgba(128,0,35,0);
-    color: white;
-    padding: 0px 0px;
-    border: none;
-    border-radius: 10px;
-  }
-  
-  .openbtn:hover {
-    background-color: #444;
-  }
-  
-  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-  #main {
-    transition: margin-left .5s; /* If you want a transition effect */
-    padding: 20x;
-  }
-  
-  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-  @media screen and (max-height: 450px) {
-    .sidebar {padding-top: 15px;}
-    .sidebar a {font-size: 18px;}
-  }
-  /*this is the text i'm gonna use*/
-    .deftext {
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      font-size: medium;
-      color: black;
-      text-align: center;
-      font-size: 80px;
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  	  <?php
+        function isMobile() {
+          return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+      }
       
-    }
-    .text {
-     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-     font-size: large;
-     text-align: center;
-     font-size: 150px;
-     color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
-    
-    
-  }
-
-  .error {
-     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-     text-align: center;
-     font-size: 200%;
-     margin-top: -20px;
-     color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
-    }
-    .error2 {
-     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-     text-align: center;
-     font-size: 150%;
-     margin-top: -20px;
-     color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
-    }
-    .goalname {
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      font-size: medium;
-      color: black;
-      text-align: left;
-      font-size: 40px;
-    }
-    .nothing {
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      font-size: medium;
-      color: black;
-      text-align: center;
-      font-size: 40px;
-    }
-      .cost {
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      font-size: medium;
-      color: black;
-      text-align: right;
-      font-size: 40px;
-      
-    }
-    .date {
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      font-size: medium;
-      color: black;
-      text-align: right;
-      font-size: 150%;
-      
-    }
-
-    body {
-      font: 14px sans-serif; text-align: left;
-      background: rgb(245,0,219);
-      background: linear-gradient(0deg, rgba(245,0,219,1) 0%, rgba(74,0,201,1) 100%);
-    }
-    /* Solid border */
-hr.solid {
-  border-top: 3px solid #bbb;
-}
-.addbutton {
-  background-color : #31B0D5;
-  color: white;
-  padding: 10px 50px;
-  border-radius: 300px;
-  border-color: #46b8da;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-#mybutton {
-  position: fixed;
-  bottom: 4px;
-  right: 10px;
-  margin-left:auto;
-  margin-right:auto;
-}
-#container{
-    height: 55%;
-    width: 100%;
-    padding:    0px;
-    margin-left: 0%;
-    padding-bottom: 0px;
-    overflow: auto;  /* code added */
-}
-#header{
-    width: 100%;
-    height: 30%;   
-    overflow: hidden;  /* code added to prevent scroll */
-}
-.button-container {
-  height: 10px;
-  position: relative;
-}
-
-.butt-center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-  </style>
+      if(isMobile()){
+          echo  "<link rel=\"stylesheet\" type=\"text/css\"  href=\"css/spendings-css-mobile.css\">";
+        
+      }
+      else {
+        echo "<link rel=\"stylesheet\" type=\"text/css\"  href=\"css/spendings-css.css\">";
+      }
+      ?>
   
     </head>
     <body>
@@ -267,12 +95,12 @@ JOIN
     <a href='' style='text-decoration:none;'>
     </a>
   
-      <span class=goalname style='margin-top: -10px;'>{$row['descrip']}</span>
-      <span class=date style='margin-top: -10px; color:rgba(0, 0, 0, 0.5);'>{$row['date_when']}</span>
+      <span class=goalname>{$row['descrip']}</span>
+      <span class=date>{$row['date_when']}</span>
       <br>
-      <span class=goalname style='margin-top: 10px; color:rgba(0, 0, 0, 0.5);'>{$row['spend_type']}</span>
+      <span class=type>{$row['spend_type']}</span>
       <br>
-      <p class=cost style='margin-top: -30px;'>€{$row['amount']}</p>
+      <p class=cost>€{$row['amount']}</p>
     ";
    }
   
@@ -281,7 +109,7 @@ JOIN
 <div class="button-container">
   <div class="butt-vertical-center">
     <a href="choosemenu.php">
-      <button style="display: block;margin-left: -6px; margin-right: 9px;margin-top:auto;margin-bottom:auto;background-color : rgba(70, 184, 218, 0.5);;color: white;padding: 0px 43%;border-radius: 209px;border-color: rgba(70, 184, 218, 0.1);"><p style=" width:auto; color: black; font-size: 30px; opacity: 1;">Spend/Get</p></button></a>
+      <button class="thebutton"><p class="textinside">Spend/Get</p></button></a>
   </div>
 </div>
 </body>

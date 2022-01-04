@@ -160,173 +160,26 @@ exit();
         <meta charset="utf-8">
         <title>CashDash</title>
         <link rel="icon" href="img/favicon.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
   var validate = function(e) {
   var t = e.value;
   e.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
 }
 </script>
-	  	  <style type="text/css">
-        /* The sidebar menu */
-    .sidebar {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: #111; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.3s; /* 0.5 second transition effect to slide in the sidebar */
-    background: rgb(26,0,89);
-    background: linear-gradient(135deg, rgba(26,0,89,1) 0%, rgba(128,0,35,1) 70%);
-  }
-  
-  /* The sidebar links */
-  .sidebar a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  /* When you mouse over the navigation links, change their color */
-  .sidebar a:hover {
-    color: #4A00FF;
-    transition: 0.4s;
-
-  }
-  
-  /* Position and style the close button (top right corner) */
-  .sidebar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-  
-  /* The button used to open the sidebar */
-  .openbtn {
-    font-size: 100%;
-    cursor: pointer;
-    background-color: rgba(128,0,35,0);
-    color: white;
-    padding: 0px 0px;
-    border: none;
-    border-radius: 10px;
-  }
-  
-  .openbtn:hover {
-    background-color: #444;
-  }
-  
-  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-  #main {
-    transition: margin-left .5s; /* If you want a transition effect */
-    padding: 20x;
-  }
-  
-  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-  @media screen and (max-height: 450px) {
-    .sidebar {padding-top: 15px;}
-    .sidebar a {font-size: 18px;}
-  }
-  /*this is the text i'm gonna use*/
-    .deftext {
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      font-size: medium;
-      color: black;
-      text-align: center;
-      font-size: 80px;
+<?php
+        function isMobile() {
+          return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+      }
       
-    }
-    .text {
-     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-     font-size: large;
-     text-align: center;
-     font-size: 150px;
-     color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
-    }
-    body {
-      font: 14px sans-serif; text-align: left;
-      background: rgb(245,0,219);
-      background: linear-gradient(0deg, rgba(245,0,219,1) 0%, rgba(74,0,201,1) 100%);
-    
-    }
-    .construcc {
-      display: block;
-      margin-left:auto;
-      margin-right:auto;
-      width: 40%;
-      text-align: center;
-    }
-    .form-group {
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-    .label {
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-    .container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;  
-  width:70%;
-  height:70%;
-  margin-left:auto;
-      margin-right:auto;
-} 
-input[type=submit] {
-  background-color: #c9c916;
-  color: black;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  width: auto;
-  font-size: 200%;
-}
-button{
-  background-color: #04AA6D;
-  color: black;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=text] {
-  background-color: #000000;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-input[type=number] {
-  background-color: #000000;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-  </style>
+      if(isMobile()){
+          echo  "<link rel=\"stylesheet\" type=\"text/css\"  href=\"css/addgoal-css-mobile.css\">";
+        
+      }
+      else {
+        echo "<link rel=\"stylesheet\" type=\"text/css\"  href=\"css/addgoal-css.css\">";
+      }
+      ?>
     </head>
     <body>
     <div id="mySidebar" class="sidebar">
@@ -353,20 +206,20 @@ function closeNav() {
 
 </script>
 <div class="container">   
-<p style="text-align: center; font-size:350%;">Insert your new goal here!</p></br>
+<p class="here">Insert your new goal here!</p></br>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
             <div class="form-group">
-                <input type="text" name="descrip" class="form-control" value="<?php echo $descrip; ?>" placeholder="Description" maxlength="26" style="font-size:300%;">
+                <input type="text" name="descrip" class="form-control" value="<?php echo $descrip; ?>" placeholder="Description" maxlength="26" >
                 
             </div>    
             <div class="form-group">
-                <input type="number" name="cost" min="0" value="0.00" step="0.01" max="100000" id="resultText" style="font-size:300%; width: 200%; margin-top:5%;" size="26" oninput="validate(this)" class="form-control <?php echo (!empty($cost_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cost; ?>">
+                <input type="number" name="cost" min="0" value="0.00" step="0.01" max="100000" id="resultText" size="26" oninput="validate(this)" class="form-control <?php echo (!empty($cost_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cost; ?>">
             </div>
             <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$descrip_err</p>"; ?></span>
             <span class="invalid-feedback"><?php echo "<p style='text-align: center; color: red; font-size:150%;'>$cost_err</p>"; ?></span>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
+                <input type="submit" value="Submit">
             </div>
             <br>
             <a href="goals.php"><p style="text-align: center;">Click here to go back to your goals.</p></a>
