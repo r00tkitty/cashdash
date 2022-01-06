@@ -57,15 +57,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         header("Location: https://www.youtube.com/watch?v=dQw4w9WgXcQ"); /* Redirect browser */
   exit();
     }
-    
-      elseif(($_POST["descrip"]) == "46 12 25"){
-        header("Location: eggs/infinitefun/fun is infinite.html"); /* Redirect browser */
-  exit();
-    } 
-    elseif(($_POST["descrip"]) == "allyourbasearebelongtous"){
-      header("Location: eggs/allyourbase/allyourbase.html"); /* Redirect browser */
+    elseif(($_POST["descrip"]) == "46 12 25"){
+      header("Location: eggs/infinitefun/fun is infinite.html"); /* Redirect browser */
 exit();
   } 
+  elseif(($_POST["descrip"]) == "mario is raper"){
+    header("Location: eggs/marioraper/mariorapergaming.html"); /* Redirect browser */
+exit();
+} 
+  elseif(($_POST["descrip"]) == "allyourbasearebelongtous"){
+    header("Location: eggs/allyourbase/allyourbase.html"); /* Redirect browser */
+exit();
+} 
     else{
         // Prepare a select statement
         $sql = "SELECT
@@ -207,7 +210,7 @@ function closeNav() {
 </script>
 <div class="container">   
 <p class="here">Insert your new goal here!</p></br>
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
 
             <div class="form-group">
                 <input type="text" name="descrip" class="form-control" value="<?php echo $descrip; ?>" placeholder="Description" maxlength="26" >
