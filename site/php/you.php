@@ -7,6 +7,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+$id = $_SESSION["id"];
+$username = $_SESSION["username"];
 ?>
  
 <!DOCTYPE html>
@@ -156,5 +158,17 @@ function closeNav() {
       <button class="center"><a href="reset-password.php">Reset Your Password</a></button>
     </div>
         <a href="logout.php" class="signouty">Sign Out of Your Account</a></div>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<input type='submit' name='hehe' />
+</form>
+
+<?php
+if(isset($_POST['hehe'])){
+ echo '<td><a onclick="return confirm(\'Are you sure? \nALL your data will be deleted!\')" href="deleteaccount.php">Delete</a></td>';
+
+
+{}
+}?>
+
 </body>
 </html>

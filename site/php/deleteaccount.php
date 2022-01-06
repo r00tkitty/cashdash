@@ -109,3 +109,35 @@ if ($conn->query($con) === TRUE) {
 
 $conn->close();
 ?>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>We're sad to see you go!</title>
+        <link rel="icon" href="img/favicon.png">
+        <link rel="stylesheet" href="css/deleteaccount-css.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            <?php
+        function isMobile() {
+          return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+      }
+      
+      if(isMobile()){
+          echo  "background: url(img/goaway-mobile.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;";
+        
+      }
+      else {
+        echo "background: url(img/goaway.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;";
+      }
+      ?>
+        }
+    </style>
+    </head>
+    <body>
+    </body>
+</html>
