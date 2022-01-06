@@ -7,6 +7,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+$id = $_SESSION["id"];
 $username = $_SESSION["username"];
 error_reporting(E_ERROR | E_PARSE);
 ?>
