@@ -1,0 +1,16 @@
+<h1 class="deftext"><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></br></h1>
+  <div class="container">
+      <button class="center"><a href="reset-password.php">Reset Your Password</a></button>
+    </div>
+        <a href="logout.php" class="signouty">Sign Out of Your Account</a></div>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<input type='submit' name='hehe' value="Delete your account">
+</form>
+
+<?php
+if(isset($_POST['hehe'])){
+ echo '<button><a onclick="return confirm(\'Are you sure you want to delete your Sangros ID? \nALL your data will be deleted!\')" href="deleteaccount.php">Are you sure?</a></button>';
+
+
+{}
+}?>

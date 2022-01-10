@@ -79,7 +79,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Attempt to execute the prepared statement
             if($stmt->execute()){
-                // Redirect to login page
+                // Redirect to login page 
+                echo  "<script>alert('Thank you for joining us');</script>";
+                echo "<iframe src=\"silence.mp3\" allow=\"autoplay\" id=\"audio\" style=\"display: none\"></iframe>
+    <audio id=\"player\" autoplay loop>
+        <source src=\"future.ogg\" type=\"audio/ogg\">
+    </audio>";
+   
+                sleep(3);
                 header("location: login.php");
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -94,7 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $mysqli->close();
 }
 ?>
- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -144,6 +151,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   width: 60px;
   border-radius: 0;
   background: red;
+}
+.thankyou{
+  color: red;
+  font-size: 150%;
+  font-family: inherit;
 }
 .content form .user-details{
   display: flex;
@@ -254,12 +266,15 @@ form .user-details .input-box{
   }
 }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
 </head>
 <body>
     <div class="container">
     <div class="title">Sign up</div>
     <br>
     <p>Please fill this form to create an account.</p>
+    
     <div class="content">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="input-box">
@@ -276,9 +291,11 @@ form .user-details .input-box{
                 <label><span class="details"    >Confirm Password</span></label>
                 <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
                 <p class="invalid-feedback"><?php echo $confirm_password_err; ?></p>
+                
             </div>
             <div class="button">
-                <input type="submit" value="Submit">
+            <audio id="sound1" src="future.ogg" preload="auto"></audio>
+                <input type="submit" value="Submit" onclick="document.getElementById('sound1').play();">
             </div>
             <p>Already have an Sangros ID? <a href="login.php" style="color:red;">Login here</a>.</p>
         </form>

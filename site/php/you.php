@@ -17,117 +17,19 @@ $username = $_SESSION["username"];
     <meta charset="UTF-8">
     <title>Welcome</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        html {
-         height: 100%;
-        }
-        body{ 
-            font: 14px sans-serif; text-align: left;
-            background: linear-gradient(157deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
-            height: 100%;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-               /* The sidebar menu */
-    .sidebar {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: #111; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.3s; /* 0.5 second transition effect to slide in the sidebar */
-    background: rgb(26,0,89);
-    background: linear-gradient(135deg, rgba(26,0,89,1) 0%, rgba(128,0,35,1) 70%);
-  }
-  
-  /* The sidebar links */
-  .sidebar a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  /* When you mouse over the navigation links, change their color */
-  .sidebar a:hover {
-    color: #4A00FF;
-    transition: 0.4s;
-
-  }
-  
-  /* Position and style the close button (top right corner) */
-  .sidebar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-  
-  /* The button used to open the sidebar */
-  .openbtn {
-    font-size: 20px;
-    cursor: pointer;
-    background-color: rgba(128,0,35,0);
-    color: white;
-    padding: 0px 0px;
-    border: none;
-    border-radius: 10px;
-  }
-  
-  .openbtn:hover {
-    background-color: #444;
-  }
-  
-  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-  #main {
-    transition: margin-left .5s; /* If you want a transition effect */
-    padding: 20x;
-  }
-  
-  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-  @media screen and (max-width: 720px) {
-    .sidebar {padding-top: 15px;}
-    .sidebar a {font-size: 18px;}
-    .deftext{font-size: 100%;}
-  }
-  /*this is the text i'm gonna use*/
-    .deftext {
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      font-size: medium;
-      color: black;
-      text-align: center;
-      font-size: 200%;
+    <?php
+        function isMobile() {
+          return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+      }
       
-    }
-    .text {
-     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-     font-size: large;
-     text-align: center;
-     font-size: 150px;
-     color: linear-gradient(0deg, rgba(255,214,0,1) 0%, rgba(255,89,89,1) 100%);
-    
-    
-  }
-
-  .center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-
-}
-
-    </style>
-</head>
+      if(isMobile()){
+          echo  "<link rel=\"stylesheet\" type=\"text/css\"  href=\"css/you-css-mobile.css\">";
+        
+      }
+      else {
+        echo "<link rel=\"stylesheet\" type=\"text/css\"  href=\"css/you-css.css\">";
+      }
+      ?>
 <body>
 <div id="mySidebar" class="sidebar">
   <a style="text-align:center" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -152,23 +54,8 @@ function closeNav() {
 }
 
 </script>
-    <h1 class="deftext">Hi there, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>.</br>What do you want to do today?</h1>
-    
-    <div class="container">
-      <button class="center"><a href="reset-password.php">Reset Your Password</a></button>
-    </div>
-        <a href="logout.php" class="signouty">Sign Out of Your Account</a></div>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-<input type='submit' name='hehe' />
-</form>
+<h1 class="deftext"><b>Your profile</b></h1>
 
-<?php
-if(isset($_POST['hehe'])){
- echo '<td><a onclick="return confirm(\'Are you sure? \nALL your data will be deleted!\')" href="deleteaccount.php">Delete</a></td>';
-
-
-{}
-}?>
 
 </body>
 </html>

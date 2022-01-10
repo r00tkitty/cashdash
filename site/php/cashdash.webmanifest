@@ -1,0 +1,15 @@
+{
+  "background_color": "purple",
+  "description": "Shows random fox pictures. Hey, at least it isn't cats.",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "/img/favicon.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "purpose": "any maskable"
+    }
+],
+  "name": "Sangros CashDash",
+  "short_name": "CashDash",
+  "start_url": "main.php"
+}
