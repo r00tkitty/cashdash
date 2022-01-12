@@ -36,7 +36,7 @@ $username = $_SESSION["username"];
   <a style="text-align:center" href="main.php">Main</a>
   <a style="text-align:center" href="goals.php">Goals</a>
   <a style="text-align:center" href="spendings.php">Spend/Get</a>
-  <a style="text-align:center" href="Login.php">Profile</a>
+  <a style="text-align:center" href="you.php">Profile</a>
   </div>
 
   <div id="main">
@@ -55,7 +55,11 @@ function closeNav() {
 
 </script>
 <h1 class="deftext"><b>Your profile</b></h1>
+<div class="container"> 
+<p class="name"><?php echo $username;?></p>
 
+
+</div>
 
 </body>
 </html>

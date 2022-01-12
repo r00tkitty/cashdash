@@ -4,8 +4,9 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: you.php");
+    header("location: main.php");
     exit;
+    error_reporting(E_ERROR | E_PARSE);
 }
  
 // Include config file
@@ -64,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;                            
                             
                             // Redirect user to welcome page
-                            header("location: you.php");
+                            header("location: main.php");
                         } else{
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid Sangros ID or password.";
@@ -93,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="main.css">`
+    <link rel="stylesheet" href="main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
     html {
@@ -254,8 +255,14 @@ form .user-details .input-box{
 <div class="container">
 <div class="title">Log in with Sangros ID</div>
 <br>
-        <p>Please fill in your credentials to login.</p>
-
+<?php
+if (isset($mysqli->connect_error)){
+  echo "<p>There is a problem connecting to the database. Please try again later</p>";
+}
+else{
+  echo "<p>Please fill in your credentials to login.</p>";
+}
+?>
         <?php 
         if(!empty($login_err)){
             echo '<div class="invalid-feedback">' . $login_err . '</div>';
